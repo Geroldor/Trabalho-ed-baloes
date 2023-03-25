@@ -2,6 +2,7 @@
 
 struct text
 {
+    char *type;
     int id;
     double x;
     double y;
@@ -10,14 +11,13 @@ struct text
     char *corb;
     char *corp;
     char *fonte;
-    double tamanho;
-    char *peso;
     double rotacao;
 };
 
-texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *fonte, double tamanho, char *peso, double rotacao)
+texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *fonte, double rotacao, char *type)
 {
     struct text *text = (struct text *)malloc(sizeof(struct text));
+    text->type = type;
     text->id = id;
     text->x = x;
     text->y = y;
@@ -26,10 +26,13 @@ texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char
     text->corb = corb;
     text->corp = corp;
     text->fonte = fonte;
-    text->tamanho = tamanho;
-    text->peso = peso;
     text->rotacao = rotacao;
     return text;
+}
+
+void textoSetType(texto text, char *type){
+    struct text *t = text;
+    t->type = type;
 }
 
 void textoSetId(texto text, int id)
@@ -80,22 +83,15 @@ void textoSetFont(texto text, char *fonte)
     t->fonte = fonte;
 }   
 
-void textoSetTamanho(texto text, double tamanho)
-{
-    struct text *t = (struct text *)text;
-    t->tamanho = tamanho;
-}
-
-void textoSetPeso(texto text, char *peso)
-{
-    struct text *t = (struct text *)text;
-    t->peso = peso;
-}
-
 void textoSetRotacao(texto text, double rotacao)
 {
     struct text *t = (struct text *)text;
     t->rotacao = rotacao;
+}
+
+char *textoGetType(texto texto){
+    struct text *t = texto;
+    return t->type;
 }
 
 int textoGetI(texto text)
@@ -144,18 +140,6 @@ char *textoGetFont(texto text)
 {
     struct text *t = (struct text *)text;
     return t->fonte;
-}
-
-double textoGetTamanho(texto text)
-{
-    struct text *t = (struct text *)text;
-    return t->tamanho;
-}
-
-char *textoGetPeso(texto text)
-{
-    struct text *t = (struct text *)text;
-    return t->peso;
 }
 
 double textoGetRotacao(texto text)

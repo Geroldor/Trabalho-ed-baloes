@@ -20,8 +20,6 @@ texto textoCreate(int id,
                   char *corb,
                   char *corp,
                   char *fonte,
-                  double tamanho,
-                  char *peso,
                   double rotacao);
 
 /**TEXTO_SET_I recebe um TEXTO e um inteiro e seta o ID do TEXTO*/
@@ -47,12 +45,6 @@ void textoSetCorp(texto text, char *corp);
 
 /**TEXTO_SET_FONT recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
 void textoSetFont(texto text, char *fonte);
-
-/**TEXTO_SET_TAMANHO recebe um TEXTO e um double e seta o tamanho do TEXTO*/
-void textoSetTamanho(texto text, double tamanho);
-
-/**TEXTO_SET_PESO recebe um TEXTO e uma char* e seta o peso do TEXTO*/
-void textoSetPeso(texto text, char *peso);
 
 /**TEXTO_SET_ROTACAO recebe um TEXTO e um double e seta a rotação do TEXTO*/
 void textoSetRotacao(texto text, double rotacao);
@@ -80,12 +72,6 @@ char *textoGetCorp(texto text);
 
 /**TEXTO_GET_FONT recebe um TEXTO e retorna a fonte do TEXTO*/
 char *textoGetFont(texto text);
-
-/**TEXTO_GET_TAMANHO recebe um TEXTO e retorna o tamanho do TEXTO*/
-double textoGetTamanho(texto text);
-
-/**TEXTO_GET_PESO recebe um TEXTO e retorna o peso do TEXTO*/
-char *textoGetPeso(texto text);
 
 /**TEXTO_GET_ROTACAO recebe um TEXTO e retorna a rotação do TEXTO*/
 double textoGetRotacao(texto text);

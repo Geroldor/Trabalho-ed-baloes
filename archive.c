@@ -32,6 +32,10 @@ void freearq(archive *a){
 char* read(archive *a){
     arq *x = a;
     char *str = malloc(sizeof(char));
-    
+    fgets(str, 100, x);
     return str;
+}
+
+char* splitc(char *c){
+    char *str = strtok();
 }
