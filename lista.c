@@ -1,310 +1,225 @@
 #include "lista.h"
-#include <assert.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
-struct listanode
-{
-	Item info;
-	struct listanode *ant;
-	struct listanode *prox;
-	double area;
+struct StNode{
+  struct StNode *prox, *ant;
+  Item info;
 };
 
-struct lista
-{
-	struct listanode *l;
-	int capacidade;
+struct StLista{
+  struct StNode *prim, *ult;
+  int capac;
+  int length;
 };
 
-Lista createLista(int capacidade)
-{
-	struct lista *L = malloc(sizeof(struct lista));
-	struct listanode *l = malloc(sizeof(struct listanode));
-	L->l = l;
-	l->prox = NIL;
-	l->info = NIL;
-	l->ant = NIL;
-	if (capacidade < 0)
-	{
-		L->capacidade = CAPAC_ILIMITADA;
-	}
-	else
-	{
-		L->capacidade = capacidade;
-	}
-	return L;
+typedef struct StLista ListaImpl;
+typedef struct StNode Node;
+
+
+struct StIterator{
+  Node *curr;
+  bool reverso;
+};
+
+typedef struct StIterator IteratorImpl;
+
+Lista createLst(int capacidade){
+  ListaImpl *newLista = (ListaImpl *) malloc (sizeof(ListaImpl));
+  newLista->prim = NULL;
+  newLista->ult = NULL;
+  newLista->capac = capacidade;
+  newLista->length = 0;
 }
 
-int length(Lista L)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	int i = 0;
-	if (pointernode != NIL)
-	{
-		if (pointernode->info != NIL)
-		{
-			i++;
-		}
-		while (pointernode->prox != NIL)
-		{
-			pointernode = pointernode->prox;
-			i++;
-		}
-	}
-	return i;
+int lengthLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
+  return lst->length;
 }
 
-int maxLength(Lista L)
-{
-	struct lista *pointer = L;
-	return pointer->capacidade;
+
+int maxLengthLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
+  return lst->capac;
 }
 
-bool isEmpty(Lista L)
-{
-	if (length(L) == 0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+
+bool isEmptyLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
+  return lst->length == 0;
 }
 
-bool isFull(Lista L)
-{
-	struct lista *pointer = L;
-	if (pointer->capacidade != CAPAC_ILIMITADA && length(pointer) >= maxLength(pointer))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+
+bool isFullLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
+  return lst->length == lst->capac;
 }
 
-Posic insert(Lista L, Item info, double area)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (isFull(L))
-	{
-		return NIL;
-	}
-	else
-	{
-		while (pointernode->prox != NIL)
-		{
-			pointernode = pointernode->prox;
-		}
-		if (!isEmpty(L))
-		{
-			struct listanode *elemento = malloc(sizeof(struct listanode));
-			pointernode->prox = elemento;
-			elemento->prox = NIL;
-			elemento->info = info;
-			elemento->ant = pointernode;
-			elemento->area = area;
-			return elemento;
-		}
-		else
-		{
-			pointernode->info = info;
-			return pointernode;
-		}
-	}
+Posic insertLst(Lista L, Item info){
+  ListaImpl *lst = ( ListaImpl *)L;
+  Node *newNode = (Node *) malloc (sizeof(Node));
+  newNode->info = info;
+  newNode->prox = NULL;
+  
+  if (isEmptyLst(L)){
+    lst->prim = newNode;
+  }
+  else{
+    lst->ult->prox = newNode;
+  }
+    
+  newNode->ant = lst->ult;
+  lst->ult = newNode;
+    lst->length++;
 }
 
-Item pop(Lista L)
-{
-	Item valor;
-	struct listanode *elemento = getFirst(L);
-	if (elemento == NIL)
-	{
-		return NIL;
-	}
-	else
-	{
-		valor = elemento->info;
-		remover(L, elemento, NULL);
-		return valor;
-	}
+Item popLst(Lista L){
+  ListaImpl *lst = (ListaImpl *)L;
+  Item item = lst->prim->info;
+  Node *paux;
+  paux = lst->prim;
+  lst->prim = paux->prox;
+
+  if(paux->prox == NULL){
+    // lista vai ficar vazia
+    lst->ult = NULL;
+  }
+  else{
+    paux->prox->ant = NULL;
+  }
+
+  lst->length--;
+  free(paux);
+  return item;
 }
 
-void remover(Lista L, Posic p, void (*removerItem)(Item))
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-
-	if (!isEmpty(L))
-	{
-		if (p == getFirst(L))
-		{
-			pointer->l = pointernode->prox;
-			if (pointernode->prox != NIL)
-			{
-				pointernode->prox->ant = NIL;
-			}
-			if (pointernode->info != NIL)
-			{
-				if (removerItem != NIL)
-				{
-					removerItem(pointernode->info);
-				}
-				else
-				{
-					pointernode->info = NIL;
-				}
-			}
-			pointernode->prox = NIL;
-			free(pointernode);
-		}
-		else
-		{
-			while (pointernode->prox != p)
-			{
-				pointernode = pointernode->prox;
-			}
-			if (pointernode->prox->info != NIL)
-			{
-				if (removerItem != NIL)
-				{
-					removerItem(pointernode->prox->info);
-				}
-				else
-				{
-					pointernode->prox->info = NIL;
-				}
-			}
-			pointernode->prox = pointernode->prox->prox;
-			if (pointernode->prox != NIL)
-			{
-				pointernode->prox->ant = pointernode;
-			}
-			free(p);
-		}
-	}
+void removeLst(Lista L, Posic p){
+  ListaImpl *lst = (ListaImpl *)L;
 }
 
-Item get(Lista L, Posic p)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (!isEmpty(L))
-	{
-		pointernode = p;
-		return pointernode->info;
-	}
-	else
-	{
-		return NIL;
-	}
+
+Item getLst(Lista L, Posic p){
+  ListaImpl *lst = ( ListaImpl *)L;
 }
 
-Posic insertBefore(Lista L, Posic p, Item info)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = p;
-	if (isFull(L))
-	{
-		return NIL;
-	}
-	else
-	{
-		if (p == getFirst(L))
-		{
-			struct listanode *elemento = malloc(sizeof(struct listanode));
-			elemento->prox = p;
-			elemento->info = info;
-			elemento->ant = NIL;
-			pointer->l = elemento;
-			return elemento;
-		}
-		else
-		{
-			struct listanode *elemento = malloc(sizeof(struct listanode));
-			elemento->prox = p;
-			elemento->info = info;
-			elemento->ant = pointernode->ant;
-			pointernode->ant->prox = elemento;
-			pointernode->ant = elemento;
-			return elemento;
-		}
-	}
+Posic insertBefore(Lista L, Posic p, Item info){
+  ListaImpl *lst = ( ListaImpl *)L;
 }
 
-Posic insertAfter(Lista L, Posic p, Item info)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (isFull(L))
-	{
-		return NIL;
-	}
-	else
-	{
-		pointernode = p;
-		struct listanode *elemento = malloc(sizeof(struct listanode));
-		elemento->prox = pointernode->prox;
-		pointernode->prox = elemento;
-		elemento->info = info;
-		elemento->ant = pointernode;
-		return elemento;
-	}
+Posic insertAfter(Lista L, Posic p, Item info){
+  ListaImpl *lst = ( ListaImpl *)L;
 }
 
-Posic getFirst(Lista L)
-{
-	struct lista *pointer = L;
-	return pointer->l;
+Posic getFirstLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
 }
 
-Posic getNext(Lista L, Posic p)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (!isEmpty(L))
-	{
-		pointernode = p;
-		return pointernode->prox;
-	}
-	else
-	{
-		return NIL;
-	}
+Posic getNextLst(Lista L,Posic p){
+  ListaImpl *lst = ( ListaImpl *)L;
+  
 }
 
-Posic getLast(Lista L)
-{
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (!isEmpty(L))
-	{
-		while (pointernode->prox != NIL)
-		{
-			pointernode = pointernode->prox;
-		}
-		return pointernode;
-	}
-	else
-	{
-		return NIL;
-	}
+Posic getLastLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
 }
 
-Posic getPrevious(Lista L, Posic p)
+Posic getPreviousLst(Lista L,Posic p){
+  ListaImpl *lst = ( ListaImpl *)L;
+  
+}
+
+void killLst(Lista L){
+  ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux;
+  while (lst->prim != NULL){
+    paux = lst->prim;
+    lst->prim = paux->prox;
+    free(paux);
+  }
+  free(lst);
+}
+
+/*
+ * Iterador
+ */
+
+Iterador createIterador(Lista L, bool reverso){
+  ListaImpl *lst = ( ListaImpl *)L;
+  IteratorImpl *it = (IteratorImpl *) malloc (sizeof(IteratorImpl));
+  it->curr = lst->prim;
+  it->reverso = reverso;
+  return it;
+}
+
+bool isIteradorEmpty(Lista L, Iterador it){
+  IteratorImpl *itimpl = (IteratorImpl *)it;
+  return itimpl->curr == NULL;
+}
+Item getIteratorNext(Lista L, Iterador it){
+   IteratorImpl *itimpl = (IteratorImpl *)it;
+   Item valor =itimpl->curr->info;
+   if (itimpl->reverso){
+     itimpl->curr = (Node *)getPrevious(L,itimpl->curr);
+   }
+   else{
+     itimpl->curr = (Node *)getNext(L,itimpl->curr);
+   }
+   return valor;
+ }
+
+void killIterador(Lista L, Iterador it){
+  IteratorImpl *itimpl = (IteratorImpl *)it;
+  free(itimpl);
+}
+ /*
+  * High-order functions
+  */
+
+Lista map(Lista L, Apply f)
 {
-	struct lista *pointer = L;
-	struct listanode *pointernode = pointer->l;
-	if (!isEmpty(L))
-	{
-		pointernode = p;
-		return pointernode->ant;
-	}
-	else
-	{
-		return NIL;
-	}
+    Lista novaLst = createLst(-1);
+    Iterador it = createIterador(L, false);
+
+    while (!isIteratorEmpty(L, it))
+    {
+        Item info = getIteratorNext(L, it);
+        Item novoInfo = f(info);
+        insertLst(novaLst, novoInfo);
+    }
+
+    killIterator(novaLst, it);
+
+    return novaLst;
+}
+
+Lista filter(Lista L, Check f)
+{
+    Lista novaLst = createLst(-1);
+    Iterador it = createIterador(L, false);
+
+    while (!isIteratorEmpty(L, it))
+    {
+        Item info = getIteratorNext(L, it);
+        if (f(info))
+        {
+            insertLst(novaLst, info);
+        }
+    }
+
+    killIterator(novaLst, it);
+
+    return novaLst;
+}
+
+void fold(Lista L, ApplyClosure f, Clausura c)
+{
+    Iterador it = createIterador(L, false);
+
+    while (!isIteratorEmpty(L, it))
+    {
+        Item info = getIteratorNext(L, it);
+        f(info, c);
+    }
+
+    killIterator(L, it);
 }
