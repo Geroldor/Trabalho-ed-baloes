@@ -11,7 +11,7 @@
 
 typedef void* archive;
 
-archive *open(char *name, char *mode);
+archive *open(char *name, char *mode, char *fullpath);
 /**Cria e aloca um espaço de memoria para uma struct arq, 
  * em seguida abre um arquivo com nome e modo inserido na entrada da função
  * e retorna um void pointer para a struct com o arquivo

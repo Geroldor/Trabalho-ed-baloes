@@ -1,4 +1,4 @@
-#include "fila.h"
+#include "photos.h"
 #define TAM_FILA 10
 #define TAM_VETOR 15
 typedef FILE* Elemento;
@@ -17,7 +17,7 @@ typedef struct fila{
 
 }fila;
 
-No *createNo(int id){
+no *createNo(int id){
     No *n = (No*) malloc(sizeof(No));
     n->id = id;
     n->inicio = 0;
@@ -25,16 +25,18 @@ No *createNo(int id){
     return n;
 }
 
-fila *createfila(){
+Fila *createfila(){
     fila *f = (fila*) malloc(sizeof(fila));
     f->inicio = 0;
     f->fim = -1;
     return f;
 }
 
-void insertFila(No *n, fila *f){
-    f->fim++;
-    f->fila[f->fim] = n;
+void insertFila(no *n, Fila *f){
+    fila *fi = f;
+    No *q = n;
+    fi->fim++;
+    fi->fila[fi->fim] = q;
 }
 
 void removeFilafim(fila *f ){
