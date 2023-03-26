@@ -1,8 +1,8 @@
 #include "qry.h"
 
-void readqry(archive q)
+void readqry(char *fullpath)
 {
-    FILE *qry = (FILE *)q;
+    FILE *qry = fopen(fullpath, "r");
     while (qry != EOF)
     {
         char *command = NULL;

@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "archive.h"
 
 typedef void* no;
-typedef void* Fila;
+typedef void* List;
+
 no *createNo(int id);
 
-Fila *createfila();
+List *createlist();
 
-void insertFila(no *n, Fila *f);
+void insertList(no *n, List *f);
 
 #endif

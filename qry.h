@@ -5,7 +5,7 @@
 #include "objects.h"
 #include "svg.h"
 #include "photos.h"
-#include "archive.h"
+#include "path.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
