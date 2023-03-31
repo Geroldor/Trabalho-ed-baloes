@@ -138,6 +138,7 @@ typedef Item (*Apply)(Item item);
 typedef bool (*Check)(Item item);
 typedef void (*ApplyClosure)(Item item, Clausura c);
 
+
 /** Cria uma nova lista. Aplica a funcao f a cada item de L
     e insere o resultado na nova lista.
  */
