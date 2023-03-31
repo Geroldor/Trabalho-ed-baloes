@@ -1,8 +1,7 @@
-#include "texto.h"
+#include "text.h"
 
 struct text
 {
-    char *type;
     int id;
     double x;
     double y;
@@ -14,10 +13,9 @@ struct text
     double rotacao;
 };
 
-texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *fonte, double rotacao, char *type)
+texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp)
 {
     struct text *text = (struct text *)malloc(sizeof(struct text));
-    text->type = type;
     text->id = id;
     text->x = x;
     text->y = y;
@@ -25,14 +23,7 @@ texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char
     text->ancora = ancora;
     text->corb = corb;
     text->corp = corp;
-    text->fonte = fonte;
-    text->rotacao = rotacao;
     return text;
-}
-
-void textoSetType(texto text, char *type){
-    struct text *t = text;
-    t->type = type;
 }
 
 void textoSetId(texto text, int id)
@@ -87,11 +78,6 @@ void textoSetRotacao(texto text, double rotacao)
 {
     struct text *t = (struct text *)text;
     t->rotacao = rotacao;
-}
-
-char *textoGetType(texto texto){
-    struct text *t = texto;
-    return t->type;
 }
 
 int textoGetI(texto text)

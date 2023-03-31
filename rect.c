@@ -1,4 +1,4 @@
-#include "retangulo.h"
+#include "rect.h"
 
 struct Rectangle
 {

@@ -12,15 +12,7 @@ conteúdo, cor de borda, cor de preenchimento, fonte, tamanho, preso e rotação
 typedef void *texto;
 
 /**CREATE_TEXTO retorna um TEXTO;*/
-texto textoCreate(int id,
-                  double x,
-                  double y,
-                  char *conteudo,
-                  char *ancora,
-                  char *corb,
-                  char *corp,
-                  char *fonte,
-                  double rotacao);
+texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp);
 
 /**TEXTO_SET_I recebe um TEXTO e um inteiro e seta o ID do TEXTO*/
 void textoSetId(texto text, int id);

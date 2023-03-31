@@ -1,6 +1,6 @@
 PROJ_NAME=ted
 
-ALUNO=
+ALUNO= Geraldo Antonio Silva Neto
 LIBS=
 OBJETOS=
 

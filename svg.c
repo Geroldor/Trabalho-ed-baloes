@@ -4,11 +4,11 @@
 
 #include "svg.h"
 
-struct _ArqSvg
+typedef struct _ArqSvg
 {
     FILE *f;
     char *fn;
-};
+} arqsvg;
 
 ArqSvg abreEscritaSvg(char *fn)
 {
@@ -92,4 +92,10 @@ void fechaSvg(ArqSvg fsvg)
     fclose(arq->f);
     free(arq->fn);
     free(arq);
+}
+
+int main(){
+    ArqSvg *x = abreEscritaSvg("teste.svg");
+    escreveCirculoSvg(x, 4, 5, 2, "blue blue");
+    fechaSvg(x);
 }
