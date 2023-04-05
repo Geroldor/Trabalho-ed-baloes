@@ -1,4 +1,5 @@
 #include "rect.h"
+#include <stdlib.h>
 
 struct Rectangle
 {

@@ -1,37 +1,48 @@
 #include "qry.h"
+#include <stdlib.h>
 
 void readqry(char *fullpath)
 {
+    int i;
     FILE *qry = fopen(fullpath, "r");
-    while (qry != EOF)
+    while (!feof(qry))
     {
         char *command = NULL;
         char *type;
+        float dx;
+        float dy;
+        float grs;
+        float r;
+        float p;
+        float h;
         fgets(command, 100, qry);
-        switch (command[0])
+        type = strtok(command, " ");
+        if(strcmp(type, "mv") == 0){
+            sscanf(command, "%d %f %f", &i, &dx, &dy);
+            printf("%s %d %f %f", type, i, dx, dy);
+        }
+
+        if(strcmp(type, "g") == 0){
+            sscanf(command, "%d %f", &i, &grs);
+            printf("%s %d %f", type, i, grs);
+        }
+
+        if(strcmp(type, "ff") == 0){
+            sscanf(command, "%d %f %f %f", &i, &r, &p, &h);
+            printf("%s %d %f %f %f", type, i, r, p, h);
+        }
+
+        if(strcmp(type, "tf") == 0)
         {
-        case 'mv':
-            int i;
-            float dx, dy;
-            sscanf(command, "%s %d %f %f", type, &i, &dx, &dy);
-            break;
-
-        case 'g':
-            int i;
-            float grs;
-            sscanf(command, "%s %d %f", type, &i, &grs);
-            break;
-
-        case 'ff':
-            int i;
-            float r, p, h;
-            sscanf(command, "%c %d %f %f %f", &type, &i, &r, &p, &h);
-            break;
-
-        case 'tf':
-            int i, l;
-            sscanf(command, "%c %d %f %f %f", &type, &i, &r, &p, &h);
-            break;
+            sscanf(command, "%d %f %f %f", &i, &r, &p, &h);
+            printf("%s %d %f %f %f", type, i, r, p, h);
+        
         }
     }
+}
+
+int main(){
+    char *fullpath = "/home/geraldo/Downloads/t1/00-smpls-caca-disp/erro.qry";
+    readqry(fullpath);
+    return 0;
 }

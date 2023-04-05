@@ -1,4 +1,5 @@
 #include "text.h"
+#include <stdlib.h>
 
 struct text
 {

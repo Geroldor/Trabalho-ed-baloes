@@ -1,4 +1,6 @@
 #include "circle.h"
+#include <stdlib.h>
+#include <string.h>
 
 struct Circulo
 {
@@ -23,31 +25,31 @@ circulo *createCircle(int id, double x, double y, double r, char *corb, char *co
     return ci;
 }
 
-void circleSeti(circulo ci, int i)
+void circleSetI(circulo ci, int i)
 {
     struct Circulo *pointer = ci;
     pointer->id = i;
 }
 
-void circleSetx(circulo ci, double x)
+void circleSetX(circulo ci, double x)
 {
     struct Circulo *pointer = ci;
     pointer->x = x;
 }
 
-void circleSety(circulo ci, double y)
+void circleSetY(circulo ci, double y)
 {
     struct Circulo *pointer = ci;
     pointer->y = y;
 }
 
-void circleSetr(circulo ci, double r)
+void circleSetR(circulo ci, double r)
 {
     struct Circulo *pointer = ci;
     pointer->r = r;
 }
 
-void circleSetcorb(circulo ci, char *corb)
+void circleSetCorb(circulo ci, char *corb)
 {
     struct Circulo *pointer = ci;
     char *corbstring = malloc(sizeof(char) * strlen(corb));
@@ -55,7 +57,7 @@ void circleSetcorb(circulo ci, char *corb)
     pointer->corb = corbstring;
 }
 
-void circleSetcorp(circulo ci, char *corp)
+void circleSetCorp(circulo ci, char *corp)
 {
     struct Circulo *pointer = ci;
     char *corpstring = malloc(sizeof(char) * strlen(corp));
@@ -63,7 +65,7 @@ void circleSetcorp(circulo ci, char *corp)
     pointer->corp = corpstring;
 }
 
-void circleSetrotacao(circulo ci, double rotacao)
+void circleSetRotacao(circulo ci, double rotacao)
 {
     struct Circulo *pointer = ci;
     pointer->rotacao = rotacao;

@@ -1,4 +1,5 @@
 #include "line.h"
+#include <stdlib.h>
 
 struct Line
 {

@@ -34,7 +34,6 @@ void getPath(char *fullPath, char *path, int lenPath){
     char *aux = strrchr(fullPath, '/');
     strncpy(path, fullPath, aux - fullPath + 1);
     path[aux - fullPath + 1] = '\0';
-    printf("path: %s\n", path);
 }
 
 void normalizePath(char *path, char *normPath, int lenNormPath){
@@ -43,5 +42,4 @@ void normalizePath(char *path, char *normPath, int lenNormPath){
         aux = '\0';
     }
     strncpy(normPath, path, strlen(path) - 1);
-    printf("normPath: %s\n", normPath);
 }

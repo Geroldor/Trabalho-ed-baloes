@@ -1,8 +1,8 @@
 PROJ_NAME=ted
 
-ALUNO= Geraldo Antonio Silva Neto
+ALUNO=geraldoasn
 LIBS=
-OBJETOS=
+OBJETOS=*.h *.c
 
 # compilador
 CC=gcc
@@ -20,7 +20,9 @@ $(PROJ_NAME): $(OBJETOS)
 #
 # COLOCAR DEPENDENCIAS DE CADA MODULO
 #
-
+clr:
+	rm -f *.o $(PROJ_NAME)
+	clear
 # Exemplo: suponha que o arquivo a.c possua os seguintes includes:
 #
 #   #include "a.h"

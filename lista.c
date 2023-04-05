@@ -151,7 +151,7 @@ Iterador createIterador(Lista L, bool reverso){
   return it;
 }
 
-bool isIteradorEmpty(Lista L, Iterador it){
+bool isIteratorEmpty(Lista L, Iterador it){
   IteratorImpl *itimpl = (IteratorImpl *)it;
   return itimpl->curr == NULL;
 }
@@ -159,15 +159,15 @@ Item getIteratorNext(Lista L, Iterador it){
    IteratorImpl *itimpl = (IteratorImpl *)it;
    Item valor =itimpl->curr->info;
    if (itimpl->reverso){
-     itimpl->curr = (Node *)getPrevious(L,itimpl->curr);
+     itimpl->curr = (Node *)getPreviousLst(L,itimpl->curr);
    }
    else{
-     itimpl->curr = (Node *)getNext(L,itimpl->curr);
+     itimpl->curr = (Node *)getNextLst(L,itimpl->curr);
    }
    return valor;
  }
 
-void killIterador(Lista L, Iterador it){
+void killIterator(Lista L, Iterador it){
   IteratorImpl *itimpl = (IteratorImpl *)it;
   free(itimpl);
 }
