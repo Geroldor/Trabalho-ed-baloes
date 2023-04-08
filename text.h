@@ -15,60 +15,60 @@ typedef void *texto;
 texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp);
 
 /**TEXTO_SET_I recebe um TEXTO e um inteiro e seta o ID do TEXTO*/
-void textoSetId(texto text, int id);
+void textoSetId(texto tex, int id);
 
 /**TEXTO_SET_ANCOR recebe um TEXTO e um char e seta a posição da ancora do TEXTO*/
-void textoSetAncora(texto text, char *ancora);
+void textoSetAncora(texto tex, char *ancora);
 
 /**TEXTO_SET_X recebe um TEXTO e um double e seta o x da ancora do TEXTO*/
-void textoSetX(texto text, double x);
+void textoSetX(texto tex, double x);
 
 /**TEXTO_SET_Y recebe um TEXTO e um double e seta o y da ancora do TEXTO*/
-void textoSetY(texto text, double y);
+void textoSetY(texto tex, double y);
 
 /**TEXTO_SET_CONTEUDO recebe um TEXTO e uma char* e seta o conteúdo do TEXTO*/
-void textoSetConteudo(texto text, char *conteudo);
+void textoSetConteudo(texto tex, char *conteudo);
 
 /**TEXTO_SET_CORB recebe um TEXTO e uma char* e seta a cor de borda do TEXTO*/
-void textoSetCorb(texto text, char *corb);
+void textoSetCorb(texto tex, char *corb);
 
 /**TEXTO_SET_CORP recebe um TEXTO e uma char* e seta a cor de preenchimento do TEXTO*/
-void textoSetCorp(texto text, char *corp);
+void textoSetCorp(texto tex, char *corp);
 
 /**TEXTO_SET_FONT recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
-void textoSetFont(texto text, char *fonte);
+void textoSetFont(texto tex, char *fonte);
 
 /**TEXTO_SET_ROTACAO recebe um TEXTO e um double e seta a rotação do TEXTO*/
-void textoSetRotacao(texto text, double rotacao);
+void textoSetRotacao(texto tex, double rotacao);
 
 /**TEXTO_GET_I recebe um TEXTO e retorna o ID do TEXTO*/
-int textoGetI(texto text);
+int textoGetI(texto tex);
 
 /**TEXTO_GET_ANCOR recebe um TEXTO e retorna a posição da ancora do TEXTO*/
-char *textoGetAncora(texto text);
+char *textoGetAncora(texto tex);
 
 /**TEXTO_GET_X recebe um TEXTO e retorna o x da ancora do TEXTO*/
-double textoGetX(texto text);
+double textoGetX(texto tex);
 
 /**TEXTO_GET_Y recebe um TEXTO e retorna o y da ancora do TEXTO*/
-double textoGetY(texto text);
+double textoGetY(texto tex);
 
 /**TEXTO_GET_CONTEUDO recebe um TEXTO e retorna o conteúdo do TEXTO*/
-char *textoGetConteudo(texto text);
+char *textoGetConteudo(texto tex);
 
 /**TEXTO_GET_CORB recebe um TEXTO e retorna a cor de borda do TEXTO*/
-char *textoGetCorb(texto text);
+char *textoGetCorb(texto tex);
 
 /**TEXTO_GET_CORP recebe um TEXTO e retorna a cor de preenchimento do TEXTO*/
-char *textoGetCorp(texto text);
+char *textoGetCorp(texto tex);
 
 /**TEXTO_GET_FONT recebe um TEXTO e retorna a fonte do TEXTO*/
-char *textoGetFont(texto text);
+char *textoGetFont(texto tex);
 
 /**TEXTO_GET_ROTACAO recebe um TEXTO e retorna a rotação do TEXTO*/
-double textoGetRotacao(texto text);
+double textoGetRotacao(texto tex);
 
 /**TEXTO_FREE recebe um TEXTO e libera a memória alocada para o TEXTO*/
-void textoFree(texto text);
+void textoFree(texto tex);
 
 #endif

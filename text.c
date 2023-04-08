@@ -1,8 +1,7 @@
 #include "text.h"
 #include <stdlib.h>
 
-struct text
-{
+typedef struct text{
     int id;
     double x;
     double y;
@@ -12,131 +11,130 @@ struct text
     char *corp;
     char *fonte;
     double rotacao;
-};
+} text;
 
 texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp)
 {
-    struct text *text = (struct text *)malloc(sizeof(struct text));
-    text->id = id;
-    text->x = x;
-    text->y = y;
-    text->conteudo = conteudo;
-    text->ancora = ancora;
-    text->corb = corb;
-    text->corp = corp;
-    return text;
+    text *tex = (text *)malloc(sizeof(text));
+    tex->id = id;
+    tex->x = x;
+    tex->y = y;
+    tex->conteudo = conteudo;
+    tex->ancora = ancora;
+    tex->corb = corb;
+    tex->corp = corp;
+    return tex;
 }
 
-void textoSetId(texto text, int id)
+void textoSetId(texto tex, int id)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->id = id;
 }
 
-void textoSetAncora(texto text, char *ancora)
+void textoSetAncora(texto tex, char *ancora)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->ancora = ancora;
 }
 
-void textoSetX(texto text, double x)
+void textoSetX(texto tex, double x)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->x = x;
 }
 
-void textoSetY(texto text, double y)
+void textoSetY(texto tex, double y)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->y = y;
 }
 
-void textoSetConteudo(texto text, char *conteudo)
+void textoSetConteudo(texto tex, char *conteudo)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->conteudo = conteudo;
 }
 
-void textoSetCorb(texto text, char *corb)
+void textoSetCorb(texto tex, char *corb)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->corb = corb;
 }
 
-void textoSetCorp(texto text, char *corp)
+void textoSetCorp(texto tex, char *corp)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->corp = corp;
 }
 
-void textoSetFont(texto text, char *fonte)
+void textoSetFont(texto tex, char *fonte)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->fonte = fonte;
 }   
 
-void textoSetRotacao(texto text, double rotacao)
+void textoSetRotacao(texto tex, double rotacao)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     t->rotacao = rotacao;
 }
 
-int textoGetI(texto text)
+int textoGetI(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->id;
 }
 
-char *textoGetAncora(texto text)
+char *textoGetAncora(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->ancora;
 }
 
-double textoGetX(texto text)
+double textoGetX(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->x;
 }
 
-double textoGetY(texto text)
+double textoGetY(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->y;
 }
 
-char *textoGetConteudo(texto text)
+char *textoGetConteudo(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->conteudo;
 }
 
-char *textoGetCorb(texto text)
+char *textoGetCorb(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->corb;
 }
 
-char *textoGetCorp(texto text)
+char *textoGetCorp(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->corp;
 }
 
-char *textoGetFont(texto text)
+char *textoGetFont(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->fonte;
 }
 
-double textoGetRotacao(texto text)
+double textoGetRotacao(texto tex)
 {
-    struct text *t = (struct text *)text;
+    text *t = (text *)tex;
     return t->rotacao;
 }
 
-void textoFree(texto text)
-{
-    struct text *t = (struct text *)text;
+void textoFree(texto tex){
+    text *t = (text *)tex;
     free(t);
 }
