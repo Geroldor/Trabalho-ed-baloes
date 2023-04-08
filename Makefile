@@ -1,7 +1,7 @@
 PROJ_NAME=ted
 
 ALUNO=geraldoasn
-LIBS=
+LIBS= -lm
 OBJETOS=*.h *.c
 
 # compilador
@@ -20,9 +20,6 @@ $(PROJ_NAME): $(OBJETOS)
 #
 # COLOCAR DEPENDENCIAS DE CADA MODULO
 #
-clr:
-	rm -f *.o $(PROJ_NAME)
-	clear
 # Exemplo: suponha que o arquivo a.c possua os seguintes includes:
 #
 #   #include "a.h"
@@ -42,3 +39,7 @@ pack: $(PROJ_NAME)
 	echo $(ALUNO)
 	date >> .entrega
 	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
+
+clr:
+	rm -f *.o $(PROJ_NAME)
+	clear

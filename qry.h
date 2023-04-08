@@ -10,4 +10,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+void readqry(char *fullpath);
+/* Lê e executa os comandos do arquivo QRY */
 #endif
