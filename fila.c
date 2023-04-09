@@ -9,8 +9,8 @@ typedef struct No{
     item conteudo;
 }no;
 
-typedef struct fila{
-    no *elementos;
+typedef struct queue{
+    no* elementos;
     int inicio;
     int fim;
     int capacidade;
@@ -18,7 +18,7 @@ typedef struct fila{
 }Fila;
 
 fila createFila(int capacidade){
-    Fila *F = malloc(sizeof(Fila));
+    Fila* F = malloc(sizeof(Fila));
     F->capacidade = capacidade;
     F->elementos = malloc(sizeof(no)*capacidade);
     F->inicio = 0;
@@ -27,7 +27,7 @@ fila createFila(int capacidade){
     return F;
 }
 
-void insertFila(Fila *f, item conteudo){
+void insertFila(Fila* f, item conteudo){
     if(f->quantidade<f->capacidade){
         f->fim++;
         f->elementos[f->fim].conteudo = conteudo;
