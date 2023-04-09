@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct Circulo
+typedef struct Circle
 {
     int id;
     double x;

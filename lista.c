@@ -2,20 +2,16 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-struct StNode{
+typedef struct StNode{
   struct StNode *prox, *ant;
   Item info;
-};
+} Node;
 
-struct StLista{
+typedef struct StLista{
   struct StNode *prim, *ult;
   int capac;
   int length;
-};
-
-typedef struct StLista ListaImpl;
-typedef struct StNode Node;
-
+} ListaImpl;
 
 struct StIterator{
   Node *curr;

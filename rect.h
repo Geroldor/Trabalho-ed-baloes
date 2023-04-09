@@ -12,61 +12,61 @@ cor de borda e cor de preenchimento.
 
 typedef void *retangulo;
 
-/** create_retangulo cria um retangulo com os dados passados como parâmetro*/
-retangulo createRetangulo(int id, double x, double y, double w, double h, char *corb, char *corp);
+/** create_rectangle cria um retangulo com os dados passados como parâmetro*/
+retangulo createRectangle(int id, double x, double y, double w, double h, char *corb, char *corp);
 
-/** retanguloSeti define o id do retângulo*/
-void retanguloSeti(retangulo ret, int id);
+/** rectangleSeti define o id do retângulo*/
+void rectangleSeti(retangulo ret, int id);
 
-/** retanguloSetx define a coordenada x do retângulo*/
-void retanguloSetx(retangulo ret, double x);
+/** rectangleSetx define a coordenada x do retângulo*/
+void rectangleSetx(retangulo ret, double x);
 
-/** retanguloSety define a coordenada y do retângulo*/
-void retanguloSety(retangulo ret, double y);
+/** rectangleSety define a coordenada y do retângulo*/
+void rectangleSety(retangulo ret, double y);
 
-/** retanguloSetw define a largura do retângulo*/
-void retanguloSetw(retangulo ret, double w);
+/** rectangleSetw define a largura do retângulo*/
+void rectangleSetw(retangulo ret, double w);
 
-/** retanguloSeth define a altura do retângulo*/
-void retanguloSeth(retangulo ret, double h);
+/** rectangleSeth define a altura do retângulo*/
+void rectangleSeth(retangulo ret, double h);
 
-/** retanguloSetcorb define a cor de borda do retângulo*/
-void retanguloSetcorb(retangulo ret, char *corb);
+/** rectangleSetcorb define a cor de borda do retângulo*/
+void rectangleSetcorb(retangulo ret, char *corb);
 
-/** retanguloSetcorp define a cor de preenchimento do retângulo*/
-void retanguloSetcorp(retangulo ret, char *corp);
+/** rectangleSetcorp define a cor de preenchimento do retângulo*/
+void rectangleSetcorp(retangulo ret, char *corp);
 
-/** retanguloSetrotacao define a rotação do retângulo*/
-void retanguloSetrotacao(retangulo ret, double rotacao);
+/** rectangleSetrotacao define a rotação do retângulo*/
+void rectangleSetrotacao(retangulo ret, double rotacao);
 
-/** retanguloGeti retorna o id do retângulo*/
-int retanguloGeti(retangulo ret);
+/** rectangleGeti retorna o id do retângulo*/
+int rectangleGeti(retangulo ret);
 
-/** retanguloGetx retorna a coordenada x do retângulo*/
-double retanguloGetx(retangulo ret);
+/** rectangleGetx retorna a coordenada x do retângulo*/
+double rectangleGetx(retangulo ret);
 
-/** retanguloGety retorna a coordenada y do retângulo*/
-double retanguloGety(retangulo ret);
+/** rectangleGety retorna a coordenada y do retângulo*/
+double rectangleGety(retangulo ret);
 
-/** retanguloGetw retorna a largura do retângulo*/
-double retanguloGetw(retangulo ret);
+/** rectangleGetw retorna a largura do retângulo*/
+double rectangleGetw(retangulo ret);
 
-/** retanguloGeth retorna a altura do retângulo*/
-double retanguloGeth(retangulo ret);
+/** rectangleGeth retorna a altura do retângulo*/
+double rectangleGeth(retangulo ret);
 
-/** retanguloGetcorb retorna a cor de borda do retângulo*/
-char *retanguloGetcorb(retangulo ret);
+/** rectangleGetcorb retorna a cor de borda do retângulo*/
+char *rectangleGetcorb(retangulo ret);
 
-/** retanguloGetcorp retorna a cor de preenchimento do retângulo*/
-char *retanguloGetcorp(retangulo ret);
+/** rectangleGetcorp retorna a cor de preenchimento do retângulo*/
+char *rectangleGetcorp(retangulo ret);
 
-/** retanguloGetarea retorna a area do retângulo*/
-double retanguloGetarea(retangulo ret);
+/** rectangleGetarea retorna a area do retângulo*/
+double rectangleGetarea(retangulo ret);
 
-/** retanguloGetRotacao retorna a rotação do retângulo*/
-double retanguloGetRotacao(retangulo ret);
+/** rectangleGetRotacao retorna a rotação do retângulo*/
+double rectangleGetRotacao(retangulo ret);
 
-/** retanguloFree libera a memória alocada para o retângulo*/
-void retanguloFree(retangulo ret);
+/** rectangleFree libera a memória alocada para o retângulo*/
+void rectangleFree(retangulo ret);
 
 #endif
