@@ -1,66 +1,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
-//fila circular estatica
+// fila circular estatica
 
-
-
-typedef struct No{
+typedef struct No
+{
     item conteudo;
-}no;
+} no;
 
-typedef struct queue{
-    no* elementos;
+typedef struct queue
+{
+    no *elementos;
     int inicio;
     int fim;
     int capacidade;
     int quantidade;
-}Fila;
+} Fila;
 
-fila createFila(int capacidade){
-    Fila* F = malloc(sizeof(Fila));
+fila createFila(int capacidade)
+{
+    Fila *F = malloc(sizeof(Fila));
     F->capacidade = capacidade;
-    F->elementos = malloc(sizeof(no)*capacidade);
+    F->elementos = malloc(sizeof(no) * capacidade);
     F->inicio = 0;
     F->fim = -1;
     F->quantidade = 0;
-    return F;
+    fila fil = F;
+    return fil;
 }
 
-void insertFila(Fila* f, item conteudo){
-    if(f->quantidade<f->capacidade){
-        f->fim++;
-        f->elementos[f->fim].conteudo = conteudo;
-        f->quantidade++;
-        printf("%d\n", f->elementos[f->fim].conteudo);
+void insertFila(Fila *fi, item conteudo)
+{
+    no *c.conteudo = conteudo;
+    if (fi->quantidade < fi->capacidade)
+    {
+        fi->fim++;
+        fi->elementos[fi->fim].conteudo = c.conteudo;
+        fi->quantidade++;
+        printf("%d\n", fi->elementos[fi->fim].conteudo);
     }
 }
 
-void removeFila(Fila *f){
-    f->elementos[f->inicio].conteudo = 0;
-    f->inicio++;
-    f->quantidade--;
+void removeFila(Fila *fi)
+{
+    fi->elementos[fi->inicio].conteudo = 0;
+    fi->inicio++;
+    fi->quantidade--;
 }
 
-item getFirstFila(Fila *f){
-    printf("%d\n", f->elementos[f->inicio].conteudo);
-    return f->elementos[f->inicio].conteudo;
+item getFirstFila(Fila *fi)
+{
+    return fi->elementos[fi->inicio].conteudo;
 }
 
-item getLastFila(Fila *f){
-    printf("%d\n", f->elementos[f->fim].conteudo);
-    return f->elementos[f->fim].conteudo;
+item getLastFila(Fila *fi)
+{
+    return fi->elementos[fi->fim].conteudo;
 }
 
-int getSizeFila(Fila *f){
-    return f->quantidade;
+int getSizeFila(Fila *fi)
+{
+    return fi->quantidade;
 }
 
-int getCapacityFila(Fila *f){
-    return f->capacidade;
+int getCapacityFila(Fila *fi)
+{
+    return fi->capacidade;
 }
 
-void killFila(Fila *f){
-    free(f->elementos);
-    free(f);
+void killFila(Fila *fi)
+{
+    free(fi->elementos);
+    free(fi);
 }

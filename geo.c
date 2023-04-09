@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "line.h"
-#include "circle.h"
-#include "rect.h"
-#include "text.h"
-#include "lista.h"
+#include "objects.h"
+#include "structures.h"
 
 
 void readgeo(char* fullpathgeo, Lista l){
@@ -33,7 +30,7 @@ void readgeo(char* fullpathgeo, Lista l){
             case 'c':
                
                 sscanf(command, "%c %d %lf %lf %lf %s %s", &type, &id, &x1, &y1, &r, corb, corp);
-                insertLst(l, createCirculo(id, x1, y1, r, corb, corp));
+                insertLst(l, createCircle(id, x1, y1, r, corb, corp));
             break;
 
             case 't': 
