@@ -29,47 +29,52 @@ fila createFila(int capacidade)
     return fil;
 }
 
-void insertFila(Fila *fi, item conteudo)
+void insertFila(fila *fi, item conteudo)
 {
-    no *c.conteudo = conteudo;
-    if (fi->quantidade < fi->capacidade)
+    Fila *F = (Fila *)fi;
+   if (F->quantidade < F->capacidade)
     {
-        fi->fim++;
-        fi->elementos[fi->fim].conteudo = c.conteudo;
-        fi->quantidade++;
-        printf("%d\n", fi->elementos[fi->fim].conteudo);
+        F->fim++;
+        F->elementos[F->fim].conteudo = conteudo;
+        F->quantidade++;
     }
 }
 
-void removeFila(Fila *fi)
+void removeFila(fila *fi)
 {
-    fi->elementos[fi->inicio].conteudo = 0;
-    fi->inicio++;
-    fi->quantidade--;
+    Fila *F = (Fila *)fi;
+    F->elementos[F->inicio].conteudo = 0;
+    F->inicio++;
+    F->quantidade--;
 }
 
-item getFirstFila(Fila *fi)
+item getFirstFila(fila *fi)
 {
-    return fi->elementos[fi->inicio].conteudo;
+    Fila *F = (Fila *)fi;
+    return F->elementos[F->inicio].conteudo;
 }
 
-item getLastFila(Fila *fi)
+item getLastFila(fila *fi)
 {
-    return fi->elementos[fi->fim].conteudo;
+    Fila *F = (Fila *)fi;
+    return F->elementos[F->fim].conteudo;
 }
 
-int getSizeFila(Fila *fi)
+int getSizeFila(fila *fi)
 {
-    return fi->quantidade;
+    Fila *F = (Fila *)fi;
+    return F->quantidade;
 }
 
-int getCapacityFila(Fila *fi)
+int getCapacityFila(fila *fi)
 {
-    return fi->capacidade;
+    Fila *F = (Fila *)fi;
+    return F->capacidade;
 }
 
-void killFila(Fila *fi)
+void killFila(fila *fi)
 {
-    free(fi->elementos);
-    free(fi);
+    Fila *F = (Fila *)fi;
+    free(F->elementos);
+    free(F);
 }

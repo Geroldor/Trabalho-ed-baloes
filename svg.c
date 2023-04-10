@@ -69,20 +69,10 @@ void escreveLinhaSvg(ArqSvg fsvg, double x1, double y1, double x2, double y2, ch
     fprintf(arq->f, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
 }
 
-void preparaDecoracaoTexto(ArqSvg fsvg, char *deco, int decoLen,
-                           char *fontFamily, char *fontStyle,
-                           char *fontWeight, char *fontSize,
-                           char *fontColor, char *textAnchor,
-                           char *strokeColor)
-{
-    snprintf(deco, decoLen, "font-family:%s;font-style:%s;font-weight:%s;font-size:%spx;fill:%s;text-anchor:%s;stroke:%s;stroke-width:1px",
-             fontFamily, fontStyle, fontWeight, fontSize, fontColor, textAnchor, strokeColor);
-}
-
-void escreveTextoSvg(ArqSvg fsvg, double x, double y, char *deco, char *texto)
+void escreveTextoSvg(ArqSvg fsvg, double x, double y, char *texto)
 {
     struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "<text x=\"%lf\" y=\"%lf\" style=\"%s\">%s</text>\n", x, y, deco, texto);
+    fprintf(arq->f, "<text x=\"%lf\" y=\"%lf\" style=\"%s\">%s</text>\n", x, y, texto);
 }
 
 void fechaSvg(ArqSvg fsvg)
@@ -92,10 +82,4 @@ void fechaSvg(ArqSvg fsvg)
     fclose(arq->f);
     free(arq->fn);
     free(arq);
-}
-
-int main(){
-    ArqSvg *x = abreEscritaSvg("teste.svg");
-    escreveCirculoSvg(x, 4, 5, 2, "blue blue");
-    fechaSvg(x);
 }

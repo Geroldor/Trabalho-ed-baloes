@@ -59,7 +59,7 @@ void rectangleSetcorp(retangulo ret, char *corp)
     pointer->cor = corpreenchimento;
 }
 
-rectangle createRectangle(int id, double x, double y, double w, double h, char *corb, char *corp)
+retangulo createRectangle(int id, double x, double y, double w, double h, char *corb, char *corp)
 {
     Rectangle *ret = (Rectangle *)malloc(sizeof(Rectangle));
     rectangleSeti(ret, id);

@@ -35,7 +35,7 @@
       "cwd": "/home/geraldo/Documentos/uel/ed/Trabalho-ed-2023",
       "program": "/home/geraldo/Documentos/uel/ed/Trabalho-ed-2023/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
