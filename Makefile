@@ -41,5 +41,6 @@ pack: $(PROJ_NAME)
 	cd ..; zip $(ALUNO).zip -r src/*.c src/*.h src/Makefile LEIA-ME.txt .entrega
 
 clr:
-	rm -f *.o $(PROJ_NAME)
-	clear
+	rm -f *.o $(PROJ_NAME) *~
+	rm -f ../$(ALUNO).zip
+	clear	
