@@ -3,7 +3,6 @@
 
 #include "lista.h"
 #include "objects.h"
-#include "svg.h"
 #include "path.h"
 #include <string.h>
 #include <stdio.h>

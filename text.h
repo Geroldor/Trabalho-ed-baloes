@@ -11,6 +11,9 @@ conteúdo, cor de borda, cor de preenchimento, fonte, tamanho, preso e rotação
 */
 typedef void *texto;
 
+/**TEXTO_BUFFER recebe um char* e um char* e aloca espaço para eles*/
+void textBuffer(char *font_type, char *font_size);
+
 /**CREATE_TEXTO retorna um TEXTO;*/
 texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp);
 
