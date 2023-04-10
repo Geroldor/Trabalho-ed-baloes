@@ -15,7 +15,7 @@ typedef void *texto;
 void textBuffer(char *font_type, char *font_size);
 
 /**CREATE_TEXTO retorna um TEXTO;*/
-texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp);
+texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *font_type, char *font_size);
 
 /**TEXTO_SET_I recebe um TEXTO e um inteiro e seta o ID do TEXTO*/
 void textoSetId(texto tex, int id);

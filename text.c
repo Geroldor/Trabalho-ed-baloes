@@ -19,7 +19,7 @@ void textBuffer(char *font_type, char *font_size){
     font_size = (char *)malloc(strlen(font_size) + 1);
 }
 
-texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp)
+texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *font_type, char *font_size)
 {
     text *tex = (text *)malloc(sizeof(text));
     tex->id = id;
@@ -29,6 +29,8 @@ texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char
     tex->ancora = ancora;
     tex->corb = corb;
     tex->corp = corp;
+    tex->font_type = font_type;
+    tex->font_size = font_size;
     return tex;
 }
 
