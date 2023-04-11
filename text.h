@@ -74,4 +74,15 @@ double textoGetRotacao(texto tex);
 /**TEXTO_FREE recebe um TEXTO e libera a memória alocada para o TEXTO*/
 void textoFree(texto tex);
 
+/**TEXTO_GET_SIZE recebe um TEXTO e retorna o tamanho do TEXTO*/
+char *textoGetSize(texto tex);
+
+/**TEXTO_SET_SIZE recebe um TEXTO e uma char* e seta o tamanho do TEXTO*/
+void textoSetSize(texto tex, char *size);
+
+/**TEXTO_GET_FONT_TYPE recebe um TEXTO e retorna a fonte do TEXTO*/
+char *textoGetFontType(texto tex);
+
+/**TEXTO_SET_FONT_TYPE recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
+void textoSetFontType(texto tex, char *font_type);
 #endif

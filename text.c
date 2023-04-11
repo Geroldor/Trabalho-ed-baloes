@@ -146,3 +146,23 @@ void textoFree(texto tex){
     text *t = (text *)tex;
     free(t);
 }
+
+char* textoGetFontType(texto tex){
+    text *t = (text *)tex;
+    return t->font_type;
+}
+
+char* textoGetFontSize(texto tex){
+    text *t = (text *)tex;
+    return t->font_size;
+}
+
+void textoSetFontSize(texto tex, char *font_size){
+    text *t = (text *)tex;
+    t->font_size = font_size;
+}
+
+void textoSetFontType(texto tex, char *font_type){
+    text *t = (text *)tex;
+    t->font_type = font_type;
+}

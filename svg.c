@@ -13,17 +13,22 @@ void endSvg(FILE *svg){
 }
 
 void circleSvg(FILE *svg, circulo c){
-	fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", circleGetCx(c), circleGetCy(c), circleGetR(c), circleGetCorb(c), circleGetCorp(c));
+	double cx = circleGetCx(c);
+	double cy = circleGetCy(c);
+	double r = circleGetR(c);
+	char* corb = circleGetCorb(c);
+	char* corp = circleGetCorp(c);
+	fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", cx, cy, r, corb, corp);
 }
 
 void rectangleSvg(FILE *svg, retangulo r){
-	fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", rectangleGetX(r), rectangleGetY(r), rectangleGetW(r), rectangleGetH(r), rectangleGetCorb(r), rectangleGetCorp(r));
+	fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", rectangleGetx(r), rectangleGety(r), rectangleGetw(r), rectangleGeth(r), rectangleGetcorb(r), rectangleGetcorp(r));
 }
 
 void textSvg(FILE *svg, texto t){
-	fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" font-size=\"20\" font-family=\"Verdana\">%s</text>\n", textGetX(t), textGetY(t), textGetCorb(t), textGetCorp(t), textGetConteudo(t));
+	fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" font-size=\"%s\" font-family=\"%s\">%s</text>\n", textoGetX(t), textoGetY(t), textoGetCorb(t), textoGetCorp(t), textoGetFontSize(t), textoGetFontType(t), textoGetConteudo(t));
 }
 
 void lineSvg(FILE *svg, linha l){
-	fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1\"/>\n", lineGetX1(l), lineGetY1(l), lineGetX2(l), lineGetY2(l), lineGetCor(l));
+	fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1\"/>\n", linhaGetx1(l), linhaGety1(l), linhaGetx2(l), linhaGety2(l), linhaGetcor(l));
 }

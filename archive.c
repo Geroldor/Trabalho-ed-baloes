@@ -26,7 +26,7 @@ Archive open(char *path, char *name, char *mode)
 	return arq;
 }
 
-void close(Archive *arq)
+void close(Archive arq)
 {
 	archive *q = (archive *)arq;
 	fclose(q->file);
@@ -34,7 +34,7 @@ void close(Archive *arq)
 	free(q);
 }
 
-FILE *getArchive(Archive *arq)
+FILE *getArchive(Archive arq)
 {
 	archive *q = (archive *)arq;
 	return q->file;

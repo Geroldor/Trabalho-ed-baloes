@@ -50,9 +50,9 @@ double circleGetR(circulo ci);
 /*
 Retorna a cor de preenchimento do circulo
 */
-char cicleGetCorp(circulo ci);
+char* cicleGetCorp(circulo ci);
 
-char cicleGetCorb(circulo ci);
+char* cicleGetCorb(circulo ci);
 
 void circleSetCorb(circulo ci, char *corb);
 

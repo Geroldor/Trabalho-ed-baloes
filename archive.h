@@ -14,6 +14,16 @@ typedef void* Archive;
 /// @param name nome do arquivo
 /// @param mode modo de abertura do arquivo
 /// @return ponteiro para o arquivo aberto
-Archive *open(char *path, char *name, char *mode);
+Archive open(char *path, char *name, char *mode);
+
+/// @brief fecha o arquivo @param archive
+/// @param archive arquivo a ser fechado
+void close(Archive arq);
+
+/// @brief obtem o arquivo em @param arq
+/// @param arq arquivo onde o objeto será escrito
+/// @return ponteiro para o arquivo
+FILE *getArchive(Archive arq);
+
 
 #endif
