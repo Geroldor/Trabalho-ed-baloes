@@ -134,8 +134,8 @@ void killIterator(Lista L, Iterador it);
  **/
 
 
-typedef Item (*Apply)(Item item);
-typedef bool (*Check)(Item item);
+typedef Item (*Apply)(Item item, Clausura c);
+typedef bool (*Check)(Item item, Clausura c);
 typedef void (*ApplyClosure)(Item item, Clausura c);
 
 

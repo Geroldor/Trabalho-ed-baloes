@@ -4,6 +4,7 @@
 #include "lista.h"
 #include "objects.h"
 #include "path.h"
+#include "clausure.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,4 +12,5 @@
 
 void readqry(char *fullpath);
 /* Lê e executa os comandos do arquivo QRY */
+
 #endif

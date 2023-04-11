@@ -19,7 +19,8 @@ void readqry(char *fullpath)
         type = strtok(command, " ");
         if(strcmp(type, "mv") == 0){
             sscanf(command, "%d %f %f", &i, &dx, &dy);
-            printf("%s %d %f %f", type, i, dx, dy);
+            
+
         }
 
         if(strcmp(type, "g") == 0){
@@ -39,10 +40,4 @@ void readqry(char *fullpath)
         
         }
     }
-}
-
-int main(){
-    char *fullpath = "/home/geraldo/Downloads/t1/00-smpls-caca-disp/erro.qry";
-    readqry(fullpath);
-    return 0;
 }

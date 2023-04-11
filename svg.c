@@ -42,15 +42,15 @@ void escreveTextoSvg(Archive arq, double x, double y, char *texto, char *fontTyp
     FILE *svg = getArchive(arq);
     if(strcmp(anchor, "m") == 0)
     {
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"middle\">%s</text>\n", x, y, fontType, fontSize, texto);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"middle\"  font-weight=\"%s\">%s</text>\n", x, y, fontType, fontSize, fontweight, texto);
     }
     else if(strcmp(anchor, "i") == 0)
     {
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"start\">%s</text>\n", x, y, fontType, fontSize, texto);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"start\" font-weight=\"%s\">%s</text>\n", x, y, fontType, fontSize, fontweight, texto);
     }
     else if(strcmp(anchor, "f") == 0)
     {
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"end\">%s</text>\n", x, y, fontType, fontSize, texto);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"end\" font-weight=\"%s\">%s</text>\n", x, y, fontType, fontSize, fontweight, texto);
     }
 }
 

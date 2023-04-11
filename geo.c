@@ -17,6 +17,7 @@ void readgeo(char *path, char* name, Lista l)
     double x1, y1, x2, y2, r, w, h;
     char* font_type;
     char* font_size;
+    char* aux;
     if (geo == NULL)
     {
         exit(1);
@@ -41,7 +42,6 @@ void readgeo(char *path, char* name, Lista l)
         
         if(strcmp(type, "tl") == 0)
         {
-            char* aux;
             textBuffer(font_type, font_size, aux);
             sscanf(command, "%s %s %s", font_type, aux, font_size);
         }
