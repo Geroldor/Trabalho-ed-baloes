@@ -1,34 +1,85 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "objects.h"	
-#include "structures.h"
 
-void startSvg(FILE *svg){
-	fprintf(svg, "<svg>\n");
+#include "svg.h"
+
+typedef struct _ArqSvg
+{
+    FILE *f;
+    char *fn;
+} arqsvg;
+
+ArqSvg abreEscritaSvg(char *fn)
+{
+    struct _ArqSvg *arq = (ArqSvg)malloc(sizeof(struct _ArqSvg));
+    if (arq == NULL)
+    {
+        return NULL;
+    }
+
+    arq->fn = strdup(fn);
+    if (arq->fn == NULL)
+    {
+        free(arq);
+        return NULL;
+    }
+
+    arq->f = fopen(fn, "w");
+    if (arq->f == NULL)
+    {
+        free(arq->fn);
+        free(arq);
+        return NULL;
+    }
+
+    fprintf(arq->f, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
+    fprintf(arq->f, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n");
+    fprintf(arq->f, "\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
+    fprintf(arq->f, "<svg width=\"100%%\" height=\"100%%\"\n");
+    fprintf(arq->f, "xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+
+    return arq;
 }
 
-void endSvg(FILE *svg){
-	fprintf(svg, "</svg>\n");
+void preparaDecoracao(ArqSvg fsvg, char *deco, int decoLen,
+                      char *corBorda, char *corPreenchimento,
+                      char *larguraBorda, double transparencia,
+                      double transparenciaPreenchimento, double transparenciaBorda)
+{
+    snprintf(deco, decoLen, "stroke:%s;fill-opacity:%lf;stroke-opacity:%lf;stroke-width:%s;fill:%s;stroke-linejoin:round",
+             corBorda, transparenciaPreenchimento, transparenciaBorda, larguraBorda, corPreenchimento);
 }
 
-void circleSvg(FILE *svg, circulo c){
-	double cx = circleGetCx(c);
-	double cy = circleGetCy(c);
-	double r = circleGetR(c);
-	char* corb = circleGetCorb(c);
-	char* corp = circleGetCorp(c);
-	fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", cx, cy, r, corb, corp);
+void escreveCirculoSvg(ArqSvg fsvg, double xc, double yc, double r, char *deco)
+{
+    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
+    fprintf(arq->f, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" style=\"%s\" />\n", xc, yc, r, deco);
 }
 
-void rectangleSvg(FILE *svg, retangulo r){
-	fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\"/>\n", rectangleGetx(r), rectangleGety(r), rectangleGetw(r), rectangleGeth(r), rectangleGetcorb(r), rectangleGetcorp(r));
+void escreveRetanguloSvg(ArqSvg fsvg, double x, double y, double larg, double alt, char *deco)
+{
+    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
+    fprintf(arq->f, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" style=\"%s\" />\n", x, y, larg, alt, deco);
 }
 
-void textSvg(FILE *svg, texto t){
-	fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" font-size=\"%s\" font-family=\"%s\">%s</text>\n", textoGetX(t), textoGetY(t), textoGetCorb(t), textoGetCorp(t), textoGetFontSize(t), textoGetFontType(t), textoGetConteudo(t));
+void escreveLinhaSvg(ArqSvg fsvg, double x1, double y1, double x2, double y2, char *deco)
+{
+    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
+    fprintf(arq->f, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
 }
 
-void lineSvg(FILE *svg, linha l){
-	fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"1\"/>\n", linhaGetx1(l), linhaGety1(l), linhaGetx2(l), linhaGety2(l), linhaGetcor(l));
+void escreveTextoSvg(ArqSvg fsvg, double x, double y, char *texto)
+{
+    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
+    fprintf(arq->f, "<text x=\"%lf\" y=\"%lf\" style=\"%s\">%s</text>\n", x, y, texto);
+}
+
+void fechaSvg(ArqSvg fsvg)
+{
+    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
+    fprintf(arq->f, "</svg>\n");
+    fclose(arq->f);
+    free(arq->fn);
+    free(arq);
 }
