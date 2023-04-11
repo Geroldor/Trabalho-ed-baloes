@@ -12,6 +12,6 @@
 /// @param path caminho do arquivo geo
 /// @param name nome do arquivo geo
 /// @param l lista encadeada que armazena os dados do arquivo geo 
-void readgeo(char* path, char* name, Lista l);
+void readgeo(char* path, char* name, char* fullpath, Lista l);
 
 #endif

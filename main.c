@@ -25,8 +25,8 @@ int main(){
 	linha l;
 	texto t;
 	Lista lst = createLst(-1);
-	Archive arq = open(path, name, "r");
-	readgeo(path, name, lst);
+	Archive arq = open(path, name, fullPath, "r");
+	readgeo(path, name, fullPath, lst);
 	Posic p = getFirstLst(lst);
 	Item item;
 	while (p != NULL)

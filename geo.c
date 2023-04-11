@@ -7,10 +7,11 @@
 #include "geo.h"
 
 
-void readgeo(char *path, char* name, Lista l)
+void readgeo(char *path, char* name, char* fullpath, Lista l)
 {
-    Archive geon = open(path, name, "r");
-    FILE *geo = getArchive(geon);
+    //Archive geon = open(path, name, fullpath, "r");
+    //FILE *geo = getArchive(geon);
+    FILE *geo = fopen(fullpath, "r");
     char *command, *type;
     char *corb, *corp, *ancora, *conteudo, *cor;
     int id;

@@ -13,7 +13,7 @@ typedef struct archive
 	char *fullpath;
 } archive;
 
-Archive open(char *path, char *name, char *mode)
+Archive open(char *path, char *name, char* fullpath, char *mode)
 {
 	archive *arq = (archive *)malloc(sizeof(archive));
 	arq->name = name;
@@ -21,7 +21,12 @@ Archive open(char *path, char *name, char *mode)
 	arq->fullpath = (char *)malloc(strlen(path) + strlen(name) + 1);
 	strcpy(arq->fullpath, path);
 	strcat(arq->fullpath, name);
-	arq->file = fopen(arq->fullpath, mode);
+	if(mode == "r"){
+		arq->file = fopen(arq->fullpath, mode);
+	}else if(mode == "w"){
+		strcat(arq->name, ".svg");
+		arq->file = fopen(arq->name, mode);
+	}
 	//Archive q = (Archive *)arq;
 	return arq;
 }

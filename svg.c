@@ -6,13 +6,16 @@
 #include "svg.h"
 
 
-void abreEscritaSvg(char *fullPath)
+Archive abreEscritaSvg(char *fullPath)
 {
     char* fileName;
     getFileName(fullPath, fileName);
-    Archive arq = open(fullPath, fileName , "a");
+    char* path;
+    getPath(fullPath, path);
+    Archive arq = open(path, fileName, fullPath, "a");
     FILE *svg = getArchive(arq);
     fprintf(svg, "<svg width=\"100%%\" height=\"100%%\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+    return arq;
 }
 
 void escreveCirculoSvg(Archive arq, double xc, double yc, double r, double rotation, char *corb, char *corp)

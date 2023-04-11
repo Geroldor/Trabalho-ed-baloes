@@ -5,7 +5,7 @@
   Cria o arquivo "fn" para escrita. Substitui o arquivo, caso exista.
   Retorna NULL, caso nao tenha sido possivel criar arquivo.
  */
-void abreEscritaSvg(char *fullPath);
+Archive abreEscritaSvg(char *fullPath);
 /*
    Insere uma circunferencia com centro em (xc,yc) de raio r. Atributos de formatacao
 (cores, largura de bordas, etc) podem ser informados pela string deco (atribuir NULL,
