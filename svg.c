@@ -1,85 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "archive.h"
+#include "path.h"
 #include "svg.h"
 
-typedef struct _ArqSvg
+
+void abreEscritaSvg(char *fullPath)
 {
-    FILE *f;
-    char *fn;
-} arqsvg;
-
-ArqSvg abreEscritaSvg(char *fn)
-{
-    struct _ArqSvg *arq = (ArqSvg)malloc(sizeof(struct _ArqSvg));
-    if (arq == NULL)
-    {
-        return NULL;
-    }
-
-    arq->fn = strdup(fn);
-    if (arq->fn == NULL)
-    {
-        free(arq);
-        return NULL;
-    }
-
-    arq->f = fopen(fn, "w");
-    if (arq->f == NULL)
-    {
-        free(arq->fn);
-        free(arq);
-        return NULL;
-    }
-
-    fprintf(arq->f, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
-    fprintf(arq->f, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n");
-    fprintf(arq->f, "\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
-    fprintf(arq->f, "<svg width=\"100%%\" height=\"100%%\"\n");
-    fprintf(arq->f, "xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
-
-    return arq;
+    char* fileName;
+    getFileName(fullPath, fileName);
+    Archive arq = open(fullPath, fileName , "a");
+    FILE *svg = getArchive(arq);
+    fprintf(svg, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
+    fprintf(svg, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n");
+    fprintf(svg, "\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
+    fprintf(svg, "<svg width=\"100%%\" height=\"100%%\"\n");
+    fprintf(svg, "xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
 }
 
-void preparaDecoracao(ArqSvg fsvg, char *deco, int decoLen,
-                      char *corBorda, char *corPreenchimento,
-                      char *larguraBorda, double transparencia,
-                      double transparenciaPreenchimento, double transparenciaBorda)
+void escreveCirculoSvg(Archive arq, double xc, double yc, double r, char *deco)
 {
-    snprintf(deco, decoLen, "stroke:%s;fill-opacity:%lf;stroke-opacity:%lf;stroke-width:%s;fill:%s;stroke-linejoin:round",
-             corBorda, transparenciaPreenchimento, transparenciaBorda, larguraBorda, corPreenchimento);
+    FILE *svg = getArchive(arq);   
+    fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" style=\"%s\" />\n", xc, yc, r, deco);
 }
 
-void escreveCirculoSvg(ArqSvg fsvg, double xc, double yc, double r, char *deco)
+void escreveRetanguloSvg(Archive arq, double x, double y, double larg, double alt, char *deco)
 {
-    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" style=\"%s\" />\n", xc, yc, r, deco);
+    FILE *svg = getArchive(arq);
+    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" style=\"%s\" />\n", x, y, larg, alt, deco);
 }
 
-void escreveRetanguloSvg(ArqSvg fsvg, double x, double y, double larg, double alt, char *deco)
+void escreveLinhaSvg(Archive arq, double x1, double y1, double x2, double y2, char *deco)
 {
-    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" style=\"%s\" />\n", x, y, larg, alt, deco);
+    FILE *svg = getArchive(arq);
+    fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
 }
 
-void escreveLinhaSvg(ArqSvg fsvg, double x1, double y1, double x2, double y2, char *deco)
+void escreveTextoSvg(Archive arq, double x, double y, char *texto, char *fontType, char *fontSize)
 {
-    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
+    FILE *svg = getArchive(arq);
+    fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-family=\"%s\" font-size=\"%s\">%s</text>\n", x, y, fontType, fontSize, texto);
 }
 
-void escreveTextoSvg(ArqSvg fsvg, double x, double y, char *texto)
+void fechaSvg(Archive arq)
 {
-    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "<text x=\"%lf\" y=\"%lf\" style=\"%s\">%s</text>\n", x, y, texto);
-}
-
-void fechaSvg(ArqSvg fsvg)
-{
-    struct _ArqSvg *arq = (struct _ArqSvg *)fsvg;
-    fprintf(arq->f, "</svg>\n");
-    fclose(arq->f);
-    free(arq->fn);
-    free(arq);
+    FILE *svg = getArchive(arq);
+    fprintf(svg, "</svg>\n");
+    close(arq);
 }

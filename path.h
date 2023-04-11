@@ -68,7 +68,7 @@ void joinAll(char *path, char *fileName, char *ext, char *fullPath, int lenFullP
    "aaa/bbb"  "ccc"     ""      => "aaa/bbb/ccc"
  */
 
-void getFileName(char *fullPath, char *fileName, int lenFileName);
+void getFileName(char *fullPath, char *fileName);
 /*
     Dado um caminho completo (fullPath), copia em fileName o nome do arquivo 
     (possivelmente) com sua extensao. Exemplos:

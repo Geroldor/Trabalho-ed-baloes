@@ -24,7 +24,7 @@ void joinAll(char *path, char *fileName, char *ext, char *fullPath, int lenFullP
         strcat(fullPath, ext);
     }
 }
-void getFileName(char *fullPath, char *fileName, int lenFileName){
+void getFileName(char *fullPath, char *fileName){
     char *aux1 = strrchr(fullPath, '/');
     char *aux2 = strrchr(fullPath, '.');
     strncpy(fileName, aux1 + 1, strlen(aux1) + 1);
