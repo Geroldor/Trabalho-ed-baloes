@@ -78,13 +78,13 @@ int circleGetI(circulo ci)
     return pointer->id;
 }
 
-double circleGetX(circulo ci)
+double circleGetCx(circulo ci)
 {
     Circle *pointer = ci;
     return pointer->x;
 }
 
-double circleGetY(circulo ci)
+double circleGetCy(circulo ci)
 {
     Circle *pointer = ci;
     return pointer->y;

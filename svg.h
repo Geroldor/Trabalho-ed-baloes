@@ -30,23 +30,6 @@ podem preparadas por meio da operacao preparaDecoracao.
  */
 void escreveLinhaSvg(Archive fsvg, double x1, double y1, double x2, double y2, double rotation, char *deco);
 
-/* Font style: */
-const char *FS_NORMAL = "normal";
-const char *FS_ITALIC = "italic";
-const char *FS_OBLIQUE = "oblique";
-
-/* Font weight */
-
-const char *FW_NORMAL = "normal";
-const char *FW_BOLD = "bold";
-const char *FW_BOLDER = "bolder";
-const char *FW_LIGHTER = "lighter";
-
-const char *TA_START = "start";
-const char *TA_MIDDLE = "middle";
-const char *TA_END = "end";
-
-
 /*
   Insere no arquivo svg o texto txt na coordenada (x,y).
 Atributos de formatacao (cores, fonte, etc) podem ser informados pela string

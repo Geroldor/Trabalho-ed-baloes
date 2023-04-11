@@ -16,8 +16,8 @@
 
 int main(){
 	char *fullPath = "~/Downloads/t1/00-smpls-caca-disp.geo";
-	char *path;
-	char *name;
+	char *path = malloc(sizeof(char) * 100);
+	char *name = malloc(sizeof(char) * 100);
 	getFileName(fullPath, name);
 	getPath(fullPath, path);
 	retangulo r;
@@ -27,7 +27,7 @@ int main(){
 	Lista lst = createLst(-1);
 	Archive arq = open(path, name, "r");
 	readgeo(path, name, lst);
-	Posic p = getFirst(lst);
+	Posic p = getFirstLst(lst);
 	Item item;
 	while (p != NULL)
 	{
@@ -41,7 +41,7 @@ int main(){
 		if (item == c)
 		{
 			c = (circulo) item;
-			escreveCirculoSvg(arq, circleGetx(c), circleGety(c), circleGetr(c), circleGetRotacao(c),circleGetcorb(c), circleGetcorp(c));
+			escreveCirculoSvg(arq, circleGetCx(c), circleGetCy(c), circleGetR(c), circleGetRotacao(c),circleGetCorb(c), circleGetCorp(c));
 		}
 		if (item == l)
 		{
@@ -51,8 +51,13 @@ int main(){
 		if (item == t)
 		{
 			t = (texto) item;
-			escreveTextoSvg(arq, textoGetx(t), textoGety(t), textoGetRotacao(t), textoGetConteudo(t), textoGetFontType(t), textoGetFontSize(t), textoGetFontWeight(t), textoGetAncora(t), textoGetCorb(t), textoGetCorp(t));
+			escreveTextoSvg(arq, textoGetX(t), textoGetY(t), textoGetRotacao(t), textoGetConteudo(t), textoGetFontType(t), textoGetFontSize(t), textoGetFontWeight(t), textoGetAncora(t), textoGetCorb(t), textoGetCorp(t));
 		}
 		p = getNextLst(lst, p);
 	}
+	fechaSvg(arq);
+	free(path);
+	free(name);
+	killLst(lst);
+	close(arq);
 }

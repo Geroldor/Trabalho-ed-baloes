@@ -1,7 +1,10 @@
 /*funções para usar com applyClosure*/
 
 #include "lista.h"
-#include "objects.h"
+#include "circle.h"
+#include "rect.h"
+#include "line.h"
+#include "text.h"
 #include "structures.h"
 #include "clausure.h"
 #include <stdio.h>
@@ -28,10 +31,10 @@ void move(Item item, Clausura c){
 		l = (linha) item;
 		double xd = abs(linhaGetx1(l) + linhaGetx2(l));
 		double yd = abs(linhaGety1(l) + linhaGety2(l));
-		linhaSetX1(l, getDXClausureMove(c));
-		linhaSetY1(l, getDYClausureMove(c));
-		linhaSetX2(l, xd + getDXClausureMove(c));
-		linhaSetY2(l, yd + getDYClausureMove(c));
+		linhaSetx1(l, getDXClausureMove(c));
+		linhaSety1(l, getDYClausureMove(c));
+		linhaSetx2(l, xd + getDXClausureMove(c));
+		linhaSety2(l, yd + getDYClausureMove(c));
 
 	}
 	else if(item == t){

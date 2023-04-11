@@ -2,7 +2,7 @@ PROJ_NAME=ted
 
 ALUNO=geraldoasn
 LIBS= -lm
-OBJETOS=*.h *.c
+OBJETOS=text.h text.c circle.h circle.c rect.h rect.c line.h line.c objects.h path.h path.c archive.h archive.c fila.h fila.c lista.h lista.c structures.h qry.h qry.c svg.h svg.c geo.h geo.c clausure.h clausure.c main.c
 
 # compilador
 CC=gcc
