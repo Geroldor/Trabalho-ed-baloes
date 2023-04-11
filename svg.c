@@ -37,10 +37,21 @@ void escreveLinhaSvg(Archive arq, double x1, double y1, double x2, double y2, ch
     fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
 }
 
-void escreveTextoSvg(Archive arq, double x, double y, char *texto, char *fontType, char *fontSize)
+void escreveTextoSvg(Archive arq, double x, double y, char *texto, char *fontType, char *fontSize, char* fontweight, char *anchor)
 {
     FILE *svg = getArchive(arq);
-    fprintf(svg, "<text x=\"%lf\" y=\"%lf\" font-family=\"%s\" font-size=\"%s\">%s</text>\n", x, y, fontType, fontSize, texto);
+    if(strcmp(anchor, "m") == 0)
+    {
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"middle\">%s</text>\n", x, y, fontType, fontSize, texto);
+    }
+    else if(strcmp(anchor, "i") == 0)
+    {
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"start\">%s</text>\n", x, y, fontType, fontSize, texto);
+    }
+    else if(strcmp(anchor, "f") == 0)
+    {
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"end\">%s</text>\n", x, y, fontType, fontSize, texto);
+    }
 }
 
 void fechaSvg(Archive arq)

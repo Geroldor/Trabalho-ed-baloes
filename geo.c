@@ -42,15 +42,14 @@ void readgeo(char *path, char* name, Lista l)
         if(strcmp(type, "tl") == 0)
         {
             char* aux;
-            textBuffer(font_type, font_size);
+            textBuffer(font_type, font_size, aux);
             sscanf(command, "%s %s %s", font_type, aux, font_size);
-            strcat(font_type, aux); 
         }
 
         if(strcmp(type, "t") == 0)
         {
             sscanf(command, "%d %lf %lf %s %s %s %s", &id, &x1, &y1, corb, corp, ancora, conteudo);
-            insertLst(l, textoCreate(id, x1, y1, conteudo, ancora, corb, corp, font_type, font_size));
+            insertLst(l, textoCreate(id, x1, y1, conteudo, ancora, corb, corp, font_type, font_size, aux));
         }
 
         if(strcmp(type, "l") == 0)
