@@ -96,31 +96,74 @@ void removeLst(Lista L, Posic p){
 
 Item getLst(Lista L, Posic p){
   ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux = (Node *)p;
+  return paux->info;
 }
 
 Posic insertBefore(Lista L, Posic p, Item info){
   ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux = lst->prim;
+  Node *paux2 = p;
+  while (true)
+  {
+    if (paux->prox == paux2){
+      Node *newNode = (Node *) malloc (sizeof(Node));
+      newNode->info = info;
+      newNode->prox = paux2;
+      newNode->ant = getPreviousLst(L,paux2);
+      paux->prox = newNode;
+      lst->length++;
+      break;
+    }
+    else{
+      paux = paux->prox;
+    }
+  }
+  
 }
 
 Posic insertAfter(Lista L, Posic p, Item info){
-  ListaImpl *lst = ( ListaImpl *)L;
+ ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux = lst->prim;
+  Node *paux2 = p;
+  while (true)
+  {
+    if (paux->ant == paux2){
+      Node *newNode = (Node *) malloc (sizeof(Node));
+      newNode->info = info;
+      newNode->prox = getNextLst(L,paux2);
+      newNode->ant = paux2;
+      paux->prox = newNode;
+      lst->length++;
+      break;
+    }
+    else{
+      paux = paux->prox;
+    }
+  }
 }
 
 Posic getFirstLst(Lista L){
   ListaImpl *lst = ( ListaImpl *)L;
+  return lst->prim;
 }
 
 Posic getNextLst(Lista L,Posic p){
   ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux = (Node *)p;
+  return paux->prox;
   
 }
 
 Posic getLastLst(Lista L){
   ListaImpl *lst = ( ListaImpl *)L;
+  return lst->ult;
 }
 
 Posic getPreviousLst(Lista L,Posic p){
   ListaImpl *lst = ( ListaImpl *)L;
+  Node *paux = (Node *)p;
+  return paux->ant;
   
 }
 
@@ -171,7 +214,7 @@ void killIterator(Lista L, Iterador it){
   * High-order functions
   */
 
-Lista map(Lista L, Apply f)
+Lista map(Lista L, Apply f, Clausura c)
 {
     Lista novaLst = createLst(-1);
     Iterador it = createIterador(L, false);
@@ -179,7 +222,7 @@ Lista map(Lista L, Apply f)
     while (!isIteratorEmpty(L, it))
     {
         Item info = getIteratorNext(L, it);
-        Item novoInfo = f(info);
+        Item novoInfo = f(info, c);
         insertLst(novaLst, novoInfo);
     }
 
@@ -188,7 +231,7 @@ Lista map(Lista L, Apply f)
     return novaLst;
 }
 
-Lista filter(Lista L, Check f)
+Lista filter(Lista L, Check f, Clausura c)
 {
     Lista novaLst = createLst(-1);
     Iterador it = createIterador(L, false);
@@ -196,7 +239,7 @@ Lista filter(Lista L, Check f)
     while (!isIteratorEmpty(L, it))
     {
         Item info = getIteratorNext(L, it);
-        if (f(info))
+        if (f(info, c))
         {
             insertLst(novaLst, info);
         }

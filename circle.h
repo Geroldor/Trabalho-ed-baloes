@@ -58,4 +58,7 @@ void circleSetCorb(circulo ci, char *corb);
 
 void circleSetCorp(circulo ci, char *corp);
 
+void circleSetRotacao(circulo ci, double rotacao);
+
+double circleGetRotacao(circulo ci);
 #endif

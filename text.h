@@ -38,9 +38,6 @@ void textoSetCorb(texto tex, char *corb);
 /**TEXTO_SET_CORP recebe um TEXTO e uma char* e seta a cor de preenchimento do TEXTO*/
 void textoSetCorp(texto tex, char *corp);
 
-/**TEXTO_SET_FONT recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
-void textoSetFont(texto tex, char *fonte);
-
 /**TEXTO_SET_ROTACAO recebe um TEXTO e um double e seta a rotação do TEXTO*/
 void textoSetRotacao(texto tex, double rotacao);
 
@@ -65,24 +62,27 @@ char *textoGetCorb(texto tex);
 /**TEXTO_GET_CORP recebe um TEXTO e retorna a cor de preenchimento do TEXTO*/
 char *textoGetCorp(texto tex);
 
-/**TEXTO_GET_FONT recebe um TEXTO e retorna a fonte do TEXTO*/
-char *textoGetFont(texto tex);
-
 /**TEXTO_GET_ROTACAO recebe um TEXTO e retorna a rotação do TEXTO*/
 double textoGetRotacao(texto tex);
 
 /**TEXTO_FREE recebe um TEXTO e libera a memória alocada para o TEXTO*/
 void textoFree(texto tex);
 
-/**TEXTO_GET_SIZE recebe um TEXTO e retorna o tamanho do TEXTO*/
-char *textoGetSize(texto tex);
-
-/**TEXTO_SET_SIZE recebe um TEXTO e uma char* e seta o tamanho do TEXTO*/
-void textoSetSize(texto tex, char *size);
-
 /**TEXTO_GET_FONT_TYPE recebe um TEXTO e retorna a fonte do TEXTO*/
 char *textoGetFontType(texto tex);
 
 /**TEXTO_SET_FONT_TYPE recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
 void textoSetFontType(texto tex, char *font_type);
+
+/**TEXTO_GET_FONT_WEIGHT recebe um TEXTO e retorna o peso da fonte do TEXTO*/
+char *textoGetFontWeight(texto tex);
+
+/**TEXTO_SET_FONT_WEIGHT recebe um TEXTO e uma char* e seta o peso da fonte do TEXTO*/
+void textoSetFontWeight(texto tex, char *font_weight);
+
+/**TEXTO_GET_FONT_SIZE recebe um TEXTO e retorna o tamanho da fonte do TEXTO*/
+char* textoGetFontSize(texto tex);
+
+/**TEXTO_SET_FONT_SIZE recebe um TEXTO e uma char* e seta o tamanho da fonte do TEXTO*/
+void textoSetFontSize(texto tex, char *font_size);
 #endif

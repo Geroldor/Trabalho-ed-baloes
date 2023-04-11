@@ -82,7 +82,7 @@ void getFileName(char *fullPath, char *fileName);
     ".txt"            => ".txt"
  */
 
-void getPath(char *fullPath, char *path, int lenPath);
+void getPath(char *fullPath, char *path);
 /*
    Dado um caminho completo, retorna seu respectivo path.
 

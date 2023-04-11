@@ -12,37 +12,33 @@ void abreEscritaSvg(char *fullPath)
     getFileName(fullPath, fileName);
     Archive arq = open(fullPath, fileName , "a");
     FILE *svg = getArchive(arq);
-    fprintf(svg, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
-    fprintf(svg, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n");
-    fprintf(svg, "\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
-    fprintf(svg, "<svg width=\"100%%\" height=\"100%%\"\n");
-    fprintf(svg, "xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+    fprintf(svg, "<svg width=\"100%%\" height=\"100%%\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
 }
 
-void escreveCirculoSvg(Archive arq, double xc, double yc, double r, char *deco)
+void escreveCirculoSvg(Archive arq, double xc, double yc, double r, double rotation, char *corb, char *corp)
 {
     FILE *svg = getArchive(arq);   
-    fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" style=\"%s\" />\n", xc, yc, r, deco);
+    fprintf(svg, "<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" transform=\"rotate(%f, %f, %f)\" color=\"%s\" stroke-width=\"1\" stroke=\"%s\" />\n", xc, yc, r, rotation, xc, yc, corp, corb);
 }
 
-void escreveRetanguloSvg(Archive arq, double x, double y, double larg, double alt, char *deco)
+void escreveRetanguloSvg(Archive arq, double x, double y, double larg, double alt, double rotation, char *corb, char *corp)
 {
     FILE *svg = getArchive(arq);
-    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" style=\"%s\" />\n", x, y, larg, alt, deco);
+    fprintf(svg, "<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" transform=\"rotate(%f, %f, %f)\" color=\"%s\" stroke-width=\"1\" stroke=\"%s\" anchor=\"middle\"/>\n", x, y, larg, alt, rotation, x, y, corp, corb);
 }
 
-void escreveLinhaSvg(Archive arq, double x1, double y1, double x2, double y2, char *deco)
+void escreveLinhaSvg(Archive arq, double x1, double y1, double x2, double y2, double rotation, char *deco)
 {
     FILE *svg = getArchive(arq);
-    fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" style=\"%s\" />\n", x1, y1, x2, y2, deco);
+    fprintf(svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" transform=\"rotate(%f, %f, %f)\" style=\"%s\" />\n", x1, y1, x2, y2, rotation, ((x1+x2)/2), ((y1+y2)/2), deco);
 }
 
-void escreveTextoSvg(Archive arq, double x, double y, char *texto, char *fontType, char *fontSize, char* fontweight, char *anchor)
+void escreveTextoSvg(Archive arq, double x, double y, double rotation, char *texto, char *fontType, char *fontSize, char* fontweight, char *anchor, char *corb, char *corp)
 {
     FILE *svg = getArchive(arq);
     if(strcmp(anchor, "m") == 0)
     {
-        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" fill=\"\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"middle\"  font-weight=\"%s\">%s</text>\n", x, y, fontType, fontSize, fontweight, texto);
+        fprintf(svg, "<text x=\"%lf\" y=\"%lf\" transform=\"rotate(%f, %f, %f)\" font-family=\"%s\" font-size=\"%s\" text-anchor=\"middle\"  font-weight=\"%s\">%s</text>\n", x, y, rotation, x, y, fontType, fontSize, fontweight, texto);
     }
     else if(strcmp(anchor, "i") == 0)
     {

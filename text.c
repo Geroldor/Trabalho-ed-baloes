@@ -77,13 +77,7 @@ void textoSetCorp(texto tex, char *corp)
 {
     text *t = (text *)tex;
     t->corp = corp;
-}
-
-void textoSetFont(texto tex, char *fonte)
-{
-    text *t = (text *)tex;
-    t->font_type = fonte;
-}   
+} 
 
 void textoSetRotacao(texto tex, double rotacao)
 {
@@ -133,12 +127,6 @@ char *textoGetCorp(texto tex)
     return t->corp;
 }
 
-char *textoGetFont(texto tex)
-{
-    text *t = (text *)tex;
-    return t->font_type;
-}
-
 double textoGetRotacao(texto tex)
 {
     text *t = (text *)tex;
@@ -168,4 +156,14 @@ void textoSetFontSize(texto tex, char *font_size){
 void textoSetFontType(texto tex, char *font_type){
     text *t = (text *)tex;
     t->font_type = font_type;
+}
+
+void textoSetFontWeight(texto tex, char *font_weight){
+    text *t = (text *)tex;
+    t->font_weight = font_weight;
+}
+
+char* textoGetFontWeight(texto tex){
+    text *t = (text *)tex;
+    return t->font_weight;
 }

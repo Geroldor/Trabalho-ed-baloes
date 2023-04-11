@@ -30,7 +30,7 @@ void getFileName(char *fullPath, char *fileName){
     strncpy(fileName, aux1 + 1, strlen(aux1) + 1);
     fileName[strlen(aux1) - strlen(aux2) - 1] = '\0';
 }
-void getPath(char *fullPath, char *path, int lenPath){
+void getPath(char *fullPath, char *path){
     char *aux = strrchr(fullPath, '/');
     strncpy(path, fullPath, aux - fullPath + 1);
     path[aux - fullPath + 1] = '\0';
