@@ -12,9 +12,9 @@ Archive abreEscritaSvg(char *fullPath)
     getFileName(fullPath, fileName);
     char* path;
     getPath(fullPath, path);
-    Archive arq = open(path, fileName, fullPath, "a");
+    Archive arq = open(path, fileName, fullPath, "w");
     FILE *svg = getArchive(arq);
-    fprintf(svg, "<svg width=\"100%%\" height=\"100%%\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+    fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
     return arq;
 }
 

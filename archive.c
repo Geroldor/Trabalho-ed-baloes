@@ -40,6 +40,7 @@ void close(Archive arq)
 	fclose(q->file);
 	free(q->fullpath);
 	free(q);
+	
 }
 
 FILE *getArchive(Archive arq)

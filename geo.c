@@ -64,14 +64,4 @@ void readgeo(char *path, char* name, char* fullpath, Lista l)
         }
     }
     close(geon);
-    free(command);
-    free(type);
-    free(corb);
-    free(corp);
-    free(ancora);
-    free(conteudo);
-    free(cor);
-    free(font_type);
-    free(font_size);
-    free(aux);
 }

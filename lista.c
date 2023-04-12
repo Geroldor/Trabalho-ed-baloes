@@ -2,14 +2,15 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct StNode{
+typedef struct StNode{ //0x55555555ec30
   char* type;
+  Item info;  //lixo: 0x65672f656d6f682f   paux->info: 0x55555555ebd0
   struct StNode *prox, *ant;
-  Item info;
 } Node;
 
 typedef struct StLista{
-  struct StNode *prim, *ult;
+  Node *prim; //0x55555555ec30
+  Node *ult;
   int capac;
   int length;
 } ListaImpl;
@@ -97,10 +98,11 @@ void removeLst(Lista L, Posic p){
 }
 
 
-Item getLst(Lista L, Posic p){
-  ListaImpl *lst = ( ListaImpl *)L;
-  Node *paux = (Node *)p;
-  return paux->info;
+Item getLst(Posic p){
+  Node *paux;
+  paux = (Node *)p;
+  Item item = paux->info;
+  return item;
 }
 
 Posic insertBefore(Lista L, Posic p, Item info, char* type){
@@ -155,7 +157,7 @@ Posic getFirstLst(Lista L){
 
 Posic getNextLst(Lista L,Posic p){
   ListaImpl *lst = ( ListaImpl *)L;
-  Node *paux = (Node *)p;
+  Node *paux = p;
   return paux->prox;
   
 }
@@ -272,11 +274,12 @@ char* getType(Item info, Lista lst){
     Posic p = getFirstLst(lst);
     while (p != NULL)
     {
-        if (getLst(lst, p) == info)
+        if (getLst(p) == info)
         {
             Node *paux = (Node *)p;
             return paux->type;
+        }else{
+            p = getNextLst(lst, p);
         }
-        p = getNextLst(lst, p);
     }
 }

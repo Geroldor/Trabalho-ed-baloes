@@ -31,7 +31,7 @@ int main(){
 	Archive arq = abreEscritaSvg(fullPath);
 	while (p != NULL)
 	{
-		item = getLst(lst, p);
+		item = getLst(p);
 		if (strcmp(getType(item, lst), "r") == 0)
 		{
 			r = (retangulo) item;

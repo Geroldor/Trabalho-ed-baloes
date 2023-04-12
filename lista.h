@@ -60,7 +60,7 @@ void removeLst(Lista L, Posic p);
 
 /** Retorna o valor do item da lista indicado por p.
     p deve indicar um elemento existente em L. */
-Item getLst(Lista L, Posic p);
+Item getLst(Posic p);
 
 /** Insere o item info na posicao imediatamente anterior ao
 item indicado por p. O comprimento da lista e' acrescido de 1 elemento.
