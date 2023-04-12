@@ -65,8 +65,7 @@ Posic insertLst(Lista L, Item info, char* type){
   }
   else{
     lst->ult->prox = newNode;
-  }
-    
+  }    
   newNode->ant = lst->ult;
   lst->ult = newNode;
   lst->length++;
@@ -79,7 +78,6 @@ Item popLst(Lista L){
   Node *paux;
   paux = lst->prim;
   lst->prim = paux->prox;
-
   if(paux->prox == NULL){
     // lista vai ficar vazia
     lst->ult = NULL;
@@ -87,7 +85,6 @@ Item popLst(Lista L){
   else{
     paux->prox->ant = NULL;
   }
-
   lst->length--;
   free(paux);
   return item;
