@@ -26,6 +26,9 @@ Archive open(char *path, char *name, char* fullpath, char *mode)
 	}else if(strcmp(mode, "w") == 0){
 		strcat(arq->name, ".svg");
 		arq->file = fopen(arq->name, mode);
+	}else if(strcmp(mode, "a") == 0){
+		strcat(arq->name, ".svg");
+		arq->file = fopen(arq->name, mode);
 	}
 	//Archive q = (Archive *)arq;
 	return arq;

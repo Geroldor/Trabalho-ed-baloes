@@ -49,7 +49,7 @@ bool isFullLst(Lista L);
 lista e' acrescido de 1 elemento. 
 Retorna um indicador para o elemento acrescentado; ou NIL, se a lista estiver
 cheia */
-Posic insertLst(Lista L, Item info);
+Posic insertLst(Lista L, Item info, char *type);
 
 /** Remove e retorna o primeiro elemento da lista L. 
     A lista nao pode  estar vazia */
@@ -66,14 +66,14 @@ Item getLst(Lista L, Posic p);
 item indicado por p. O comprimento da lista e' acrescido de 1 elemento.
 Retorna um indicador para o elemento acrescentado. p deve indicar um 
 elemento existente em L.*/
-Posic insertBefore(Lista L,Posic p, Item info);
+Posic insertBefore(Lista L,Posic p, Item info, char *type);
  
 
 /** Insere o item info na posicao imediatamente posterior ao
 item indicado por p. O comprimento da lista e' acrescido de 1 elemento.
 Retorna um indicador para o elemento acrescentado. p deve indicar um 
 elemento existente em L.*/
-Posic insertAfterLst(Lista L,Posic p, Item info); 
+Posic insertAfterLst(Lista L,Posic p, Item info, char *type); 
 
 /** Retorna o indicador do primeiro elemento de L. Se
 length(L)=0, retorna NIL. */
@@ -156,4 +156,8 @@ Lista filter(Lista L, Check f, Clausura c);
  */
 void fold(Lista L, ApplyClosure f, Clausura c);
 
+/*
+   Retorna o tipo de forma no nó da lista
+*/
+char *getType(Item item, Lista lst);
 #endif

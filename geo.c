@@ -31,38 +31,47 @@ void readgeo(char *path, char* name, char* fullpath, Lista l)
     while (!feof(geo))
     {
         fgets(command, 100, geo);
-        type = strtok(command, " ");
+        sscanf(command, "%s", type);
         
         if (strcmp(type, "r") == 0)
         {
-        
-            sscanf(command, "%d %lf %lf %lf %lf %s %s", &id, &x1, &y1, &w, &h, corb, corp);
-            insertLst(l, createRectangle(id, x1, y1, w, h, corb, corp));
+            sscanf(command, "%s %d %lf %lf %lf %lf %s %s", type, &id, &x1, &y1, &w, &h, corb, corp);
+            insertLst(l, createRectangle(id, x1, y1, w, h, corb, corp), type);
         }
 
         if(strcmp(type, "c") == 0)
         {
-            sscanf(command, "%d %lf %lf %lf %s %s", &id, &x1, &y1, &r, corb, corp);
-            insertLst(l, createCircle(id, x1, y1, r, corb, corp));
+            sscanf(command, "%s %d %lf %lf %lf %s %s", type, &id, &x1, &y1, &r, corb, corp);
+            insertLst(l, createCircle(id, x1, y1, r, corb, corp), type);
         }
         
         if(strcmp(type, "tl") == 0)
         {
-            textBuffer(font_type, font_size, aux);
-            sscanf(command, "%s %s %s", font_type, aux, font_size);
+            sscanf(command, "%s %s %s %s", type, font_type, aux, font_size);
+            textBuffer(font_type, font_size, aux);   
         }
 
         if(strcmp(type, "t") == 0)
         {
-            sscanf(command, "%d %lf %lf %s %s %s %s", &id, &x1, &y1, corb, corp, ancora, conteudo);
-            insertLst(l, textoCreate(id, x1, y1, conteudo, ancora, corb, corp, font_type, font_size, aux));
+            sscanf(command, "%s %d %lf %lf %s %s %s %s", type, &id, &x1, &y1, corb, corp, ancora, conteudo);
+            insertLst(l, textoCreate(id, x1, y1, conteudo, ancora, corb, corp, font_type, font_size, aux), type);
         }
 
         if(strcmp(type, "l") == 0)
         {
-            sscanf(command, "%d %lf %lf %lf %lf %s", &id, &x1, &y1, &x2, &y2, cor);
-            insertLst(l, createLinha(id, x1, y1, x2, y2, cor));
-            break;
+            sscanf(command, "%s %d %lf %lf %lf %lf %s", type, &id, &x1, &y1, &x2, &y2, cor);
+            insertLst(l, createLinha(id, x1, y1, x2, y2, cor), type);
         }
     }
+    close(geon);
+    free(command);
+    free(type);
+    free(corb);
+    free(corp);
+    free(ancora);
+    free(conteudo);
+    free(cor);
+    free(font_type);
+    free(font_size);
+    free(aux);
 }
