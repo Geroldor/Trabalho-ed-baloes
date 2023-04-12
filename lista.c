@@ -101,7 +101,8 @@ void removeLst(Lista L, Posic p){
 Item getLst(Posic p){
   Node *paux;
   paux = (Node *)p;
-  Item item = paux->info;
+  Item item;
+  item = paux->info;
   return item;
 }
 
