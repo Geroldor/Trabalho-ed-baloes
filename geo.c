@@ -9,15 +9,20 @@
 
 void readgeo(char *path, char* name, char* fullpath, Lista l)
 {
-    //Archive geon = open(path, name, fullpath, "r");
+    Archive geon = open(path, name, fullpath, "r");
     //FILE *geo = getArchive(geon);
     FILE *geo = fopen(fullpath, "r");
-    char *command, *type;
-    char *corb, *corp, *ancora, *conteudo, *cor;
+    char *command = malloc(sizeof(char) * 100);
+    char *type = malloc(sizeof(char) * 100);
+    char *corb = malloc(sizeof(char) * 100);
+    char *corp = malloc(sizeof(char) * 100);
+    char *ancora = malloc(sizeof(char) * 100);
+    char *conteudo = malloc(sizeof(char) * 100);
+    char *cor = malloc(sizeof(char) * 100);
     int id;
     double x1, y1, x2, y2, r, w, h;
-    char* font_type;
-    char* font_size;
+    char* font_type = malloc(sizeof(char) * 100);
+    char* font_size = malloc(sizeof(char) * 100);
     char* aux;
     if (geo == NULL)
     {

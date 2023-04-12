@@ -21,9 +21,9 @@ Archive open(char *path, char *name, char* fullpath, char *mode)
 	arq->fullpath = (char *)malloc(strlen(path) + strlen(name) + 1);
 	strcpy(arq->fullpath, path);
 	strcat(arq->fullpath, name);
-	if(mode == "r"){
+	if(strcmp(mode, "r") == 0){
 		arq->file = fopen(arq->fullpath, mode);
-	}else if(mode == "w"){
+	}else if(strcmp(mode, "w") == 0){
 		strcat(arq->name, ".svg");
 		arq->file = fopen(arq->name, mode);
 	}

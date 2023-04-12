@@ -26,6 +26,7 @@ Lista createLst(int capacidade){
   newLista->ult = NULL;
   newLista->capac = capacidade;
   newLista->length = 0;
+  return newLista;
 }
 
 int lengthLst(Lista L){
@@ -66,7 +67,8 @@ Posic insertLst(Lista L, Item info){
     
   newNode->ant = lst->ult;
   lst->ult = newNode;
-    lst->length++;
+  lst->length++;
+  return lst->ult;
 }
 
 Item popLst(Lista L){

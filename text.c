@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 typedef struct text{
+    enum tipo tipo;
     int id;
     double x;
     double y;
