@@ -48,9 +48,6 @@ int main(){
 		if (strcmp(getType(p), "t") == 0)
 		{
 			t = (texto) getLst(p);
-			double x = textoGetX(t);
-			double y = textoGetY(t);
-
 			escreveTextoSvg(arq, textoGetX(t), textoGetY(t), textoGetRotacao(t), textoGetConteudo(t), textoGetFontType(t), textoGetFontSize(t), textoGetFontWeight(t), textoGetAncora(t), textoGetCorb(t), textoGetCorp(t));
 		}
 		p = getNextLst(p);
