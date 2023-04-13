@@ -1,6 +1,7 @@
 #include "lista.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct StNode{ //0x55555555ec30
   char* type;
@@ -74,6 +75,9 @@ Posic insertLst(Lista L, Item info, char* type){
 
 Item popLst(Lista L){
   ListaImpl *lst = (ListaImpl *)L;
+  if(isEmptyLst(L)){
+    return NULL;
+  }
   Item item = lst->prim->info;
   Node *paux;
   paux = lst->prim;
@@ -86,35 +90,41 @@ Item popLst(Lista L){
     paux->prox->ant = NULL;
   }
   lst->length--;
-  free(paux);
   return item;
 }
 
 void removeLst(Lista L, Posic p){
   ListaImpl *lst = (ListaImpl *)L;
+  Node *paux = (Node *)p;
+  Node *paux2 = paux->ant;
+  Node *paux3 = paux->prox;
+  paux2->prox = paux3;
+  paux3->ant = paux2;
 }
 
 
 Item getLst(Posic p){
-  Node *paux;
-  paux = (Node *)p;
-  Item item;
-  item = paux->info;
-  return item;
+  Node *pen = p;
+  if (pen == NULL)
+  {
+    return NULL;
+  } 
+  return pen->info;
 }
 
 Posic insertBefore(Lista L, Posic p, Item info, char* type){
   ListaImpl *lst = ( ListaImpl *)L;
   Node *paux = lst->prim;
   Node *paux2 = p;
+   Node *newNode = (Node *) malloc (sizeof(Node));
   while (true)
   {
-    if (paux->prox == paux2){
-      Node *newNode = (Node *) malloc (sizeof(Node));
+    if ((paux->prox == paux2) && (paux->prox != NULL)){
+      
       newNode->info = info;
       newNode->type = type;
       newNode->prox = paux2;
-      newNode->ant = getPreviousLst(L,paux2);
+      newNode->ant = getPreviousLst(paux2);
       paux->prox = newNode;
       lst->length++;
       break;
@@ -123,29 +133,31 @@ Posic insertBefore(Lista L, Posic p, Item info, char* type){
       paux = paux->prox;
     }
   }
-  
+  return newNode;
 }
 
 Posic insertAfter(Lista L, Posic p, Item info, char* type){
  ListaImpl *lst = ( ListaImpl *)L;
   Node *paux = lst->prim;
   Node *paux2 = p;
+  Node *newNode = (Node *) malloc (sizeof(Node));
   while (true)
   {
-    if (paux->ant == paux2){
-      Node *newNode = (Node *) malloc (sizeof(Node));
+    if ((paux->ant == paux2) && (paux->ant != NULL)){
+      
       newNode->info = info;
       newNode->type = type;
-      newNode->prox = getNextLst(L,paux2);
+      newNode->prox = getNextLst(paux2);
       newNode->ant = paux2;
       paux->prox = newNode;
-      lst->length++;
+      lst->length++;      
       break;
     }
     else{
       paux = paux->prox;
     }
   }
+  return newNode;
 }
 
 Posic getFirstLst(Lista L){
@@ -153,9 +165,9 @@ Posic getFirstLst(Lista L){
   return lst->prim;
 }
 
-Posic getNextLst(Lista L,Posic p){
-  ListaImpl *lst = ( ListaImpl *)L;
+Posic getNextLst(Posic p){
   Node *paux = p;
+  if(paux == NULL) return NULL;
   return paux->prox;
   
 }
@@ -165,8 +177,7 @@ Posic getLastLst(Lista L){
   return lst->ult;
 }
 
-Posic getPreviousLst(Lista L,Posic p){
-  ListaImpl *lst = ( ListaImpl *)L;
+Posic getPreviousLst(Posic p){
   Node *paux = (Node *)p;
   return paux->ant;
   
@@ -195,23 +206,23 @@ Iterador createIterador(Lista L, bool reverso){
   return it;
 }
 
-bool isIteratorEmpty(Lista L, Iterador it){
+bool isIteratorEmpty(Iterador it){
   IteratorImpl *itimpl = (IteratorImpl *)it;
   return itimpl->curr == NULL;
 }
-Item getIteratorNext(Lista L, Iterador it){
+Item getIteratorNext(Iterador it){
    IteratorImpl *itimpl = (IteratorImpl *)it;
    Item valor =itimpl->curr->info;
    if (itimpl->reverso){
-     itimpl->curr = (Node *)getPreviousLst(L,itimpl->curr);
+     itimpl->curr = (Node *)getPreviousLst(itimpl->curr);
    }
    else{
-     itimpl->curr = (Node *)getNextLst(L,itimpl->curr);
+     itimpl->curr = (Node *)getNextLst(itimpl->curr);
    }
    return valor;
  }
 
-void killIterator(Lista L, Iterador it){
+void killIterator(Iterador it){
   IteratorImpl *itimpl = (IteratorImpl *)it;
   free(itimpl);
 }
@@ -224,14 +235,14 @@ Lista map(Lista L, Apply f, Clausura c)
     Lista novaLst = createLst(-1);
     Iterador it = createIterador(L, false);
 
-    while (!isIteratorEmpty(L, it))
+    while (!isIteratorEmpty(it))
     {
-        Item info = getIteratorNext(L, it);
+        Item info = getIteratorNext(it);
         Item novoInfo = f(info, c);
-        insertLst(novaLst, novoInfo, getType(info, L));
+        insertLst(novaLst, novoInfo, getType(info));
     }
 
-    killIterator(novaLst, it);
+    killIterator(it);
 
     return novaLst;
 }
@@ -241,16 +252,16 @@ Lista filter(Lista L, Check f, Clausura c)
     Lista novaLst = createLst(-1);
     Iterador it = createIterador(L, false);
 
-    while (!isIteratorEmpty(L, it))
+    while (!isIteratorEmpty(it))
     {
-        Item info = getIteratorNext(L, it);
+        Item info = getIteratorNext(it);
         if (f(info, c))
         {
-            insertLst(novaLst, info, getType(info, L));
+            insertLst(novaLst, info, getType(info));
         }
     }
 
-    killIterator(novaLst, it);
+    killIterator(it);
 
     return novaLst;
 }
@@ -259,25 +270,16 @@ void fold(Lista L, ApplyClosure f, Clausura c)
 {
     Iterador it = createIterador(L, false);
 
-    while (!isIteratorEmpty(L, it))
+    while (!isIteratorEmpty(it))
     {
-        Item info = getIteratorNext(L, it);
+        Item info = getIteratorNext(it);
         f(info, c);
     }
 
-    killIterator(L, it);
+    killIterator(it);
 }
 
-char* getType(Item info, Lista lst){
-    Posic p = getFirstLst(lst);
-    while (p != NULL)
-    {
-        if (getLst(p) == info)
-        {
-            Node *paux = (Node *)p;
-            return paux->type;
-        }else{
-            p = getNextLst(lst, p);
-        }
-    }
+char* getType(Posic p){
+    Node *paux = (Node *) p;
+    return paux->type;
 }

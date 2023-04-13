@@ -15,10 +15,13 @@ typedef struct text{
     double rotacao;
 } text;
 
-void textBuffer(char *font_type, char *font_size, char* font_weight){
-    font_weight = (char *)malloc(strlen(font_weight) + 1);
-    font_type = (char *)malloc(strlen(font_type) + 1);
-    font_size = (char *)malloc(strlen(font_size) + 1);
+void textBuffer(char *font_type, char *font_size, char* font_weight, char *a, char *b, char *c){
+    font_weight = (char *)malloc(sizeof(char) * 50);
+    font_type = (char *)malloc(sizeof(char) * 10);
+    font_size = (char *)malloc(sizeof(char) * 10);
+    font_size = c;
+    font_type = a;
+    font_weight = b;
 }
 
 texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *font_type, char *font_size, char *font_weight)
@@ -33,7 +36,7 @@ texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char
     tex->corp = corp;
     tex->font_type = font_type;
     tex->font_size = font_size;
-    tex->font_weight = font_weight;
+    tex->font_weight = font_weight; 
     return tex;
 }
 

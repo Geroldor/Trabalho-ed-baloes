@@ -82,7 +82,7 @@ Posic getFirstLst(Lista L);
 /** Retorna o indicador do elemento de L seguinte ao elemento
 indicado por p. Se p for o ultimo elemento da lista, retorna NIL.
 p deve indicar um elemento existente em L.*/
-Posic getNextLst(Lista L,Posic p);
+Posic getNextLst(Posic p);
 
 /** Retorna o indicador do ultimo elemento de L. Se
 length(L)=0, retorna NIL.*/
@@ -91,7 +91,7 @@ Posic getLastLst(Lista L);
 /** Retorna o indicador do elemento de L anterior ao elemento
 indicado por p. Se p for o primeiro elemento da lista, retorna NIL.
 p deve indicar um elemento existente em L. */
-Posic getPreviousLst(Lista L,Posic p);
+Posic getPreviousLst(Posic p);
 
 /** Libera toda memoria alocada pela lista. */
 void killLst(Lista L);
@@ -115,19 +115,19 @@ Iterador createIterador(Lista L, bool reverso);
    i.e., todos os item ja' tenham sido retornados; falso,
    caso contrario.
  */
-bool isIteratorEmpty(Lista L, Iterador it);
+bool isIteratorEmpty(Iterador it);
 
 /**
    Retorna o proximo item. O iterador nao deve estar esgotado.
    Caso o item retornado seja o ultima, subsequentes invocacoes
    a isIteratorEmpty retornam verdadeiro.
  */
-Item getIteratorNext(Lista L, Iterador it);
+Item getIteratorNext(Iterador it);
 
 /**
    Libera os recursos usados pelo iterador.
  */
-void killIterator(Lista L, Iterador it);
+void killIterator(Iterador it);
 
 /**
  ** High-order functions
@@ -159,5 +159,5 @@ void fold(Lista L, ApplyClosure f, Clausura c);
 /*
    Retorna o tipo de forma no nó da lista
 */
-char *getType(Item item, Lista lst);
+char *getType(Posic p);
 #endif
