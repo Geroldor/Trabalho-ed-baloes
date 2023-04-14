@@ -5,57 +5,91 @@
 #include <stdlib.h>
 #include <string.h>
 
-/**
-linha é um polígono que possui dois pontos de origem (âncora definida por x e y) e cor.
-*/
+
 typedef void *linha;
 
-/** createLinha retorna uma linha; */
+/// @brief cria uma linha
+/// @param id id da linha
+/// @param x1 coordenada x do início da linha
+/// @param y1 coordenada y do início da linha
+/// @param x2 coordenada x do fim da linha
+/// @param y2 coordenada y do fim da linha
+/// @param cor cor da linha
+/// @return void* para linha criada
 linha createLinha(int id, double x1, double y1, double x2, double y2, char *cor);
 
-/** linhaSeti recebe uma linha e um inteiro e seta o id da linha */
+/// @brief define o id da linha
+/// @param li linha
+/// @param i nova id da linha
 void linhaSeti(linha li, int i);
 
-/** linhaSetx1 recebe uma linha e um double e seta o x do início da linha */
+/// @brief define a coordenada x do início da linha
+/// @param li linha
+/// @param x1 nova coordenada x do início da linha
 void linhaSetx1(linha li, double x1);
 
-/** linhaSety1 recebe uma linha e um double e seta o y do início da linha */
+/// @brief define a coordenada y do início da linha
+/// @param li linha
+/// @param y1 nova coordenada y do início da linha
 void linhaSety1(linha li, double y1);
 
-/** linhaSetx2 recebe uma linha e um double e seta o x do fim da linha */
+/// @brief define a coordenada x do fim da linha
+/// @param li linha
+/// @param x2 nova coordenada x do fim da linha
 void linhaSetx2(linha li, double x2);
 
-/** linhaSety2 recebe uma linha e um double e seta o y do fim da linha */
+/// @brief define a coordenada y do fim da linha
+/// @param li linha
+/// @param y2 nova coordenada y do fim da linha
 void linhaSety2(linha li, double y2);
 
-/** linhaSetcor recebe uma linha e uma string e seta a cor da linha */
+/// @brief define a cor da linha
+/// @param li linha
+/// @param cor nova cor da linha
 void linhaSetcor(linha li, char *cor);
 
-/** linhaGeti recebe uma linha e retorna o id da linha */
+/// @brief retorna a id da linha
+/// @param li linha
+/// @return id da linha
 int linhaGeti(linha li);
 
-/** linhaGetx1 recebe uma linha e retorna o x do início da linha */
+/// @brief retorna a coordenada x do inicio da linha
+/// @param li linha
+/// @return coordena x do inicio da linha
 double linhaGetx1(linha li);
 
-/** linhaGety1 recebe uma linha e retorna o y do início da linha */
+/// @brief retorna a coordenada y do inicio da linha
+/// @param li linha
+/// @return coordenada y do inicio da linha
 double linhaGety1(linha li);
 
-/** linhaGetx2 recebe uma linha e retorna o x do fim da linha */
+/// @brief retorna a coordenada x do fim da linha
+/// @param li linha
+/// @return coordenada x do fim da linha
 double linhaGetx2(linha li);
 
-/** linhaGety2 recebe uma linha e retorna o y do fim da linha */
+/// @brief retorna a coordenada y do fim da linha
+/// @param li linha
+/// @return coordenada y do fim da linha
 double linhaGety2(linha li);
 
-/** linhaGetcor recebe uma linha e retorna a cor da linha */
+/// @brief retorna a cor da linha
+/// @param li linha
+/// @return cor da linha
 char *linhaGetcor(linha li);
 
-/** linhaSetRotacao recebe uma linha e um double e seta o angulo de rotação da linha */
+/// @brief define a rotação da linha
+/// @param li linha
+/// @param rotacao nova rotação da linha
 void linhaSetRotacao(linha li, double rotacao);
 
-/** linhaGetRotacao recebe uma linha e retorna o angulo de rotação da linha */
+/// @brief retorna a rotação da linha
+/// @param li linha
+/// @return rotação da linha
 double linhaGetRotacao(linha li);
 
-/** linhaFree recebe uma linha e libera a memória alocada para ela */
+/// @brief libera a memória alocada para a linha
+/// @param li linha
 void linhaFree(linha li);
 
 #endif

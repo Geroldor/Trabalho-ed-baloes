@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct StNode{ //0x55555555ec30
+typedef struct StNode{
   char* type;
-  Item info;  //lixo: 0x65672f656d6f682f   paux->info: 0x55555555ebd0
+  Item info;  
   struct StNode *prox, *ant;
 } Node;
 
 typedef struct StLista{
-  Node *prim; //0x55555555ec30
+  Node *prim; 
   Node *ult;
   int capac;
   int length;

@@ -11,78 +11,141 @@ conteúdo, cor de borda, cor de preenchimento, fonte, tamanho, preso e rotação
 */
 typedef void *texto;
 
-/**TEXTO_BUFFER recebe um char* e um char* e aloca espaço para eles*/
+/// @brief Define o tipo de fonte do texto até que seja alterado novamente.
+/// @param font_type Tipo da fonte
+/// @param font_size Tamanho da fonte
+/// @param font_weight decoração da fonte
+/// @param a tipo da fonte para ser inserido no buffer
+/// @param b decoração da fonte para ser inserido no buffer
+/// @param c tamanho da fonte para ser inserido no buffer
 void textBuffer(char *font_type, char *font_size, char* font_weight, char *a, char *b, char *c);
 
-/**CREATE_TEXTO retorna um TEXTO;*/
+/// @brief Cria um texto
+/// @param id id do texto
+/// @param x coordenada x da ancora
+/// @param y coordenada y da ancora
+/// @param conteudo conteudo do texto
+/// @param ancora ancora do texto
+/// @param corb cor da borda do texto
+/// @param corp cor de preenchimento do texto
+/// @param font_type tipo da fonte
+/// @param font_size tamanho da fonte
+/// @param font_weight decoração da fonte
+/// @return void* do texto criado
 texto textoCreate(int id, double x, double y, char *conteudo, char *ancora, char *corb, char *corp, char *font_type, char *font_size, char *font_weight);
 
-/**TEXTO_SET_I recebe um TEXTO e um inteiro e seta o ID do TEXTO*/
+/// @brief define uma nova id para o texto
+/// @param tex texto
+/// @param id nova id do texto
 void textoSetId(texto tex, int id);
 
-/**TEXTO_SET_ANCOR recebe um TEXTO e um char e seta a posição da ancora do TEXTO*/
+/// @brief define uma nova ancora para o texto
+/// @param tex texto
+/// @param ancora nova posição da ancora do texto
 void textoSetAncora(texto tex, char *ancora);
 
-/**TEXTO_SET_X recebe um TEXTO e um double e seta o x da ancora do TEXTO*/
+/// @brief define uma coordenada x para o texto
+/// @param tex texto
+/// @param x nova coordenada x da ancora do texto
 void textoSetX(texto tex, double x);
 
-/**TEXTO_SET_Y recebe um TEXTO e um double e seta o y da ancora do TEXTO*/
+/// @brief define uma coordenada y para o texto
+/// @param tex texto
+/// @param y coordenada y da ancora do texto
 void textoSetY(texto tex, double y);
 
-/**TEXTO_SET_CONTEUDO recebe um TEXTO e uma char* e seta o conteúdo do TEXTO*/
+/// @brief define um novo conteudo para o texto
+/// @param tex texto
+/// @param conteudo novo conteudo do texto 
 void textoSetConteudo(texto tex, char *conteudo);
 
-/**TEXTO_SET_CORB recebe um TEXTO e uma char* e seta a cor de borda do TEXTO*/
+/// @brief define uma nova cor de borda para o texto
+/// @param tex texto
+/// @param corb nova cor de borda do texto
 void textoSetCorb(texto tex, char *corb);
 
-/**TEXTO_SET_CORP recebe um TEXTO e uma char* e seta a cor de preenchimento do TEXTO*/
+/// @brief define uma nova cor de preenchimento para o texto
+/// @param tex texto
+/// @param corp nova cor de preenchimento do texto
 void textoSetCorp(texto tex, char *corp);
 
-/**TEXTO_SET_ROTACAO recebe um TEXTO e um double e seta a rotação do TEXTO*/
+/// @brief define uma nova rotação para o texto
+/// @param tex texto
+/// @param rotacao nova rotação do texto
 void textoSetRotacao(texto tex, double rotacao);
 
-/**TEXTO_GET_I recebe um TEXTO e retorna o ID do TEXTO*/
+/// @brief pega a ID do texto
+/// @param tex texto
+/// @return id do texto
 int textoGetI(texto tex);
 
-/**TEXTO_GET_ANCOR recebe um TEXTO e retorna a posição da ancora do TEXTO*/
+/// @brief retorna a ancora do texto
+/// @param tex texto
+/// @return ancora do texto
 char *textoGetAncora(texto tex);
 
-/**TEXTO_GET_X recebe um TEXTO e retorna o x da ancora do TEXTO*/
+/// @brief retorna a coordenada x do texto
+/// @param tex texto
+/// @return coordenada x do texto
 double textoGetX(texto tex);
 
-/**TEXTO_GET_Y recebe um TEXTO e retorna o y da ancora do TEXTO*/
+/// @brief retorna a coordenada y do texto
+/// @param tex texto
+/// @return coordenada y do texto
 double textoGetY(texto tex);
 
-/**TEXTO_GET_CONTEUDO recebe um TEXTO e retorna o conteúdo do TEXTO*/
+/// @brief retorna o conteudo do texto
+/// @param tex texto
+/// @return conteudo do texto
 char *textoGetConteudo(texto tex);
 
-/**TEXTO_GET_CORB recebe um TEXTO e retorna a cor de borda do TEXTO*/
+/// @brief retorna a cor de borda do texto
+/// @param tex texto
+/// @return cor de borda do texto
 char *textoGetCorb(texto tex);
 
-/**TEXTO_GET_CORP recebe um TEXTO e retorna a cor de preenchimento do TEXTO*/
+/// @brief retorna a cor de preenchimento do texto
+/// @param tex texto
+/// @return cor de preenchimento do texto
 char *textoGetCorp(texto tex);
 
-/**TEXTO_GET_ROTACAO recebe um TEXTO e retorna a rotação do TEXTO*/
+/// @brief retorna a rotação do texto
+/// @param tex texto
+/// @return rotação do texto
 double textoGetRotacao(texto tex);
 
-/**TEXTO_FREE recebe um TEXTO e libera a memória alocada para o TEXTO*/
+/// @brief retorna o tipo da fonte do texto
+/// @param tex texto
+/// @return tipo da fonte do texto
 void textoFree(texto tex);
 
-/**TEXTO_GET_FONT_TYPE recebe um TEXTO e retorna a fonte do TEXTO*/
+/// @brief retorna o tipo da fonte do texto
+/// @param tex texto
+/// @return tipo da fonte do texto
 char *textoGetFontType(texto tex);
 
-/**TEXTO_SET_FONT_TYPE recebe um TEXTO e uma char* e seta a fonte do TEXTO*/
+/// @brief Define o tipo da fonte do texto
+/// @param tex texto
+/// @param font_type tipo da fonte do texto 
 void textoSetFontType(texto tex, char *font_type);
 
-/**TEXTO_GET_FONT_WEIGHT recebe um TEXTO e retorna o peso da fonte do TEXTO*/
+/// @brief Retorna o peso da fonte do TEXTO
+/// @param tex texto 
+/// @return peso da fonte do TEXTO
 char *textoGetFontWeight(texto tex);
 
-/**TEXTO_SET_FONT_WEIGHT recebe um TEXTO e uma char* e seta o peso da fonte do TEXTO*/
+/// @brief Define o peso da fonte do TEXTO
+/// @param tex texto
+/// @param font_weight peso da fonte do TEXTO
 void textoSetFontWeight(texto tex, char *font_weight);
 
-/**TEXTO_GET_FONT_SIZE recebe um TEXTO e retorna o tamanho da fonte do TEXTO*/
+/// @brief Retorna o tamanho da fonte do TEXTO
+/// @param tex texto
+/// @return tamanho da fonte do TEXTO
 char* textoGetFontSize(texto tex);
 
-/**TEXTO_SET_FONT_SIZE recebe um TEXTO e uma char* e seta o tamanho da fonte do TEXTO*/
+/// @brief Define o tamanho da fonte do TEXTO
+/// @param tex texto
+/// @param font_size tamanho da fonte do TEXTO	
 void textoSetFontSize(texto tex, char *font_size);
 #endif

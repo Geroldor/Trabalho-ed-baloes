@@ -19,7 +19,6 @@ void readqry(char *fullpath)
         type = strtok(command, " ");
         if(strcmp(type, "mv") == 0){
             sscanf(command, "%d %f %f", &i, &dx, &dy);
-            clausure c = createClausureMove(i, dx, dy);
 
         }
 
