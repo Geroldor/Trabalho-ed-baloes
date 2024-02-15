@@ -70,11 +70,18 @@ produzidos.
 
 O “banco de dados” deve ser armazenado numa lista (deve ser conforme .h disponibilizado
 no AVA). A implementação da lista deve ser dinâmica e duplamente encadeada. O iterador e as
-funções map, filter, fold devem ser implementadas e utilizadas.
-Cada balão deve armazenar 10 filas de fotos. A implementação da fila deve ser circular,
-estática. Cada fila terá no máximo 15 elementos.
+funções map, filter, fold devem ser implementadas e utilizadas. Cada balão deve armazenar 
+10 filas de fotos. A implementação da fila deve ser circular, estática. Cada fila terá no 
+máximo 15 elementos.
+
 Usar o modelo de makefile disponibilizado no AVA da disciplina.
+
 É terminantemente proibido declarar structs nos arquivos de cabeçalho (.h).
 O programa deve estar bem modularizado (arquivos .h e .c). Cada estrutura de dados deve
 estar em um módulo separado. O arquivo .h deve estar muito bem documentado (lembre-se que é
 um “contrato”).
+
+## Motivações do cancelamento
+
+Este projeto não foi concluido devido ao prazo de entrega ja ter sido encerrado, porém
+existe a possibilidade de continua-lo futuramente
